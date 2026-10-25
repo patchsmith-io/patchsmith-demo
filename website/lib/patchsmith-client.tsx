@@ -543,23 +543,25 @@ export async function loadAppChart() {
             </BarChart>
           )}
         </ChartContainer>
-        <table className="sr-only">
-          <caption>{label}</caption>
-          <thead>
-            <tr>
-              <th scope="col">Category</th>
-              <th scope="col">{valueLabel}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((point, index) => (
-              <tr key={index}>
-                <th scope="row">{point.label}</th>
-                <td>{format.format(point.value)}</td>
+        <div className="sr-only">
+          <table>
+            <caption>{label}</caption>
+            <thead>
+              <tr>
+                <th scope="col">Category</th>
+                <th scope="col">{valueLabel}</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {data.map((point, index) => (
+                <tr key={index}>
+                  <th scope="row">{point.label}</th>
+                  <td>{format.format(point.value)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </figure>
     );
   };
