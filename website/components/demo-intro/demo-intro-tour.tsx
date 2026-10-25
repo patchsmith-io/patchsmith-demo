@@ -44,7 +44,7 @@ export function DemoIntroTour({
         element: hasStripe ? '[data-demo="app-page-surface"]' : '[data-demo="apps-panel"]',
         title: "Let apps extend your UI",
         description: hasStripe
-          ? "Features can also fill a page, like this billing dashboard."
+          ? "Apps add UI where you allow, like this full-screen page."
           : "Features can also fill a page. This example is unavailable right now.",
         progress: "2 of 3",
       },
