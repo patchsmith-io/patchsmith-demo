@@ -169,7 +169,7 @@ function Analytics() {
                         {customers.map((customer) => (
                           <TableRow key={customer.id}>
                             <TableCell>
-                              <Flex direction="column" gap="1">
+                              <Flex direction="column" align="start" gap="1">
                                 <Button
                                   label={customer.name}
                                   variant="link"

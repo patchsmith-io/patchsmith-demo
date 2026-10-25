@@ -51,7 +51,7 @@ void test("chart alternatives preserve exact displayed currency and escape suppl
     assert.match(html, /<caption>&lt;script&gt;Revenue&lt;\/script&gt;<\/caption>/);
     assert.match(html, /&lt;b&gt;Oct&lt;\/b&gt;/);
     assert.doesNotMatch(html, /<script>Revenue/);
-    assert.match(html, /<table class="sr-only">/);
+    assert.match(html, /<div class="sr-only"><table>/);
   }
 });
 

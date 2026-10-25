@@ -26,6 +26,7 @@ export function AppSlotButton({
       <Button
         variant={variant}
         size={size}
+        className={variant === "link" ? "px-0" : undefined}
         render={
           <a
             href={disabled ? undefined : href}
@@ -44,7 +45,14 @@ export function AppSlotButton({
   }
 
   return (
-    <Button type={type} variant={variant} size={size} disabled={disabled} onClick={onClick}>
+    <Button
+      type={type}
+      variant={variant}
+      size={size}
+      className={variant === "link" ? "px-0" : undefined}
+      disabled={disabled}
+      onClick={onClick}
+    >
       {label}
     </Button>
   );
