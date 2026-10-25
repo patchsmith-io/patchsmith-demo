@@ -13,6 +13,7 @@ Exact contract: [generated bindings](../../../../../src/patchsmith.gen.ts); sear
 | size | no | "xs", "sm", "default", "lg" |
 | disabled | no | boolean |
 | href | no | string |
+| type | no | "button", "submit", "reset" |
 
 ## Callbacks
 

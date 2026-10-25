@@ -10,6 +10,7 @@ export function AppSlotButton({
   variant,
   size,
   disabled,
+  type = "button",
   onClick,
 }: {
   label: string;
@@ -17,6 +18,7 @@ export function AppSlotButton({
   variant?: ComponentProps<typeof Button>["variant"];
   size?: ComponentProps<typeof Button>["size"];
   disabled?: boolean;
+  type?: ComponentProps<typeof Button>["type"];
   onClick?: () => void;
 }) {
   if (href) {
@@ -42,7 +44,7 @@ export function AppSlotButton({
   }
 
   return (
-    <Button variant={variant} size={size} disabled={disabled} onClick={onClick}>
+    <Button type={type} variant={variant} size={size} disabled={disabled} onClick={onClick}>
       {label}
     </Button>
   );

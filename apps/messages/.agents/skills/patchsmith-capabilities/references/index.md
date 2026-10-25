@@ -22,6 +22,7 @@ Read this index, then only the component or capability needed for the change. Ke
 - [Button](components/Button.md)
 - [Badge](components/Badge.md)
 - [Card](components/Card.md)
+- [Tabs](components/Tabs.md)
 - [Alert](components/Alert.md)
 - [Empty](components/Empty.md)
 - [Form](components/Form.md)
@@ -46,3 +47,4 @@ Read this index, then only the component or capability needed for the change. Ke
 - [TableHead](components/TableHead.md)
 - [TableCell](components/TableCell.md)
 - [Dialog](components/Dialog.md)
+- [DialogActions](components/DialogActions.md)

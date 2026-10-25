@@ -25,7 +25,8 @@ function createHost(origin: string) {
       instructions: [
         "Always add a panel slot, even if the app has no functionality for it.",
         "Whenever a page, panel, or section has nothing to display, use our Empty component. This includes missing data, no matching results, and panel slots with no functionality. Give it a clear title and a helpful description, and include a relevant action as a child when one is available.",
-        "When building forms or groups of inputs, wrap the inputs in our FieldGroup component and use it to handle their layout and spacing.",
+        "When building forms or groups of inputs, wrap the inputs in our Fieldset component and use it to handle their layout and spacing.",
+        "For modal forms, compose Dialog > Form > Fieldset and DialogActions. Put the inputs in Fieldset and Cancel/Save Button children in DialogActions, inside the same Form. DialogActions lays out its children horizontally. Form.onSubmit handles saving, native validation, and Enter submission; Save must have type: 'submit', and Cancel uses onClick to close the dialog. Set Form.disabled and Button.disabled while saving. Dialog only handles the modal and onOpenChange; do not put onSubmit on Dialog. Form adds no buttons or layout, so always provide explicit buttons inside it. For inline forms, use Form with an explicit submit Button.",
       ].join("\n\n"),
     },
     tools: {

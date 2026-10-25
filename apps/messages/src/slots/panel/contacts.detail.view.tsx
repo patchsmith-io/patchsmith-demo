@@ -6,6 +6,7 @@ import {
   Button,
   Flex,
   Form,
+  Fieldset,
   Heading,
   Select,
   Separator,
@@ -187,29 +188,35 @@ function Conversation({ workspaceId, contact }: { workspaceId: string; contact: 
       <Separator />
       <Box shrink="0">
         <Form
-          submitLabel={sending ? "Sending…" : "Send"}
           disabled={loading || sending || !draft.length || draft.length > MAX_MESSAGE_LENGTH}
           onSubmit={() => void send()}
         >
-          <Textarea
-            label="Message"
-            submitOnEnter
-            value={draft}
-            placeholder="Write a message…"
-            disabled={sending}
-            required
-            onChange={({ value }) => {
-              setChannel(channel);
-              setDraft(value);
-            }}
-          />
-          <Flex justify="end">
-            <Text
-              text={`${draft.length}/${MAX_MESSAGE_LENGTH}`}
-              size="xs"
-              tone={draft.length > MAX_MESSAGE_LENGTH ? "destructive" : "muted"}
+          <Fieldset>
+            <Textarea
+              label="Message"
+              submitOnEnter
+              value={draft}
+              placeholder="Write a message…"
+              disabled={sending}
+              required
+              onChange={({ value }) => {
+                setChannel(channel);
+                setDraft(value);
+              }}
             />
-          </Flex>
+            <Flex justify="end">
+              <Text
+                text={`${draft.length}/${MAX_MESSAGE_LENGTH}`}
+                size="xs"
+                tone={draft.length > MAX_MESSAGE_LENGTH ? "destructive" : "muted"}
+              />
+            </Flex>
+            <Button
+              type="submit"
+              label={sending ? "Sending…" : "Send"}
+              disabled={loading || sending || !draft.length || draft.length > MAX_MESSAGE_LENGTH}
+            />
+          </Fieldset>
         </Form>
       </Box>
     </Flex>

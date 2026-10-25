@@ -163,18 +163,44 @@ The client implements contracted components using Patchsmith primitives and the 
 - Content: `Text`, `Heading`, `Card`, `Badge`, `Avatar`.
 - Forms: `Form`, `Fieldset`, `Input`, `Textarea`, `Select`, `Combobox`, `Checkbox`, `Switch`, `Button`.
 - Tables: `Table`, `TableHeader`, `TableBody`, `TableRow`, `TableHead`, `TableCell`.
-- Feedback and overlays: `Alert`, `Empty`, `Progress`, `Spinner`, `Skeleton`, `Separator`, `Dialog`.
+- Feedback and overlays: `Alert`, `Empty`, `Progress`, `Spinner`, `Skeleton`, `Separator`, `Dialog`, `DialogActions`.
 
-Controls expose plain serializable callbacks: `onChange({ value })`, `onCheckedChange({ checked })`, `onOpenChange({ open })`, `onClick()` and `onSubmit()`. `Form` handles native validation and includes a submit button, with configurable `submitLabel` and `disabled` props. Each input has a visible label and accessible name. `Combobox` searches option labels and optional descriptions, displays a configurable empty state, and emits the selected string ID through `onChange({ value })`. `Dialog` always provides a title. Compose table rows inside their header/body and cells inside rows.
+Controls expose plain serializable callbacks: `onChange({ value })`, `onCheckedChange({ checked })`, `onOpenChange({ open })`, `onClick()` and `onSubmit()`. Use `Form` for forms: it handles native validation and submission without adding buttons or layout. Its `disabled` prop suppresses its submit callback. Add an explicit `Button type="submit"` for inline forms. Buttons default to `type="button"`. Submit buttons must be inside their `Form`. Each input has a visible label and accessible name. `Combobox` searches option labels and optional descriptions, displays a configurable empty state, and emits the selected string ID through `onChange({ value })`. Compose table rows inside their header/body and cells inside rows.
+
+`Dialog` provides the modal, title, and optional description. For a modal form, compose `Form` inside `Dialog`, group inputs in `Fieldset`, and put explicit buttons in `DialogActions` inside the same form. `DialogActions` keeps the buttons inline and aligned to the end. `Form.onSubmit` handles native validation and Enter submission; Save uses `type="submit"` and Cancel closes the dialog through its own `onClick`. No form ID is needed. Disable the form and buttons while saving. `Dialog` does not handle submission.
+
+```tsx
+<Dialog open={open} title="New follow-up" onOpenChange={({ open }) => setOpen(open)}>
+  <Form disabled={saving} onSubmit={saveFollowUp}>
+    <Fieldset disabled={saving}>
+      <Input label="Title" value={title} required onChange={({ value }) => setTitle(value)} />
+      <Input
+        label="Due date"
+        type="date"
+        value={dueDate}
+        required
+        onChange={({ value }) => setDueDate(value)}
+      />
+    </Fieldset>
+    <DialogActions>
+      <Button label="Cancel" variant="outline" disabled={saving} onClick={() => setOpen(false)} />
+      <Button label="Save follow-up" type="submit" disabled={saving} />
+    </DialogActions>
+  </Form>
+</Dialog>
+```
+
+`DialogActions` can also group buttons in a dialog without a form.
 
 `Fieldset` groups related controls in a full-width vertical stack with consistent spacing, using the existing Coss `Fieldset` and `FieldsetLegend`. Its optional `legend` labels the group, and `disabled` disables its descendant controls. Compose it inside `Form` to create sections without adding another form or submit button:
 
 ```tsx
-<Form submitLabel="Save contact">
+<Form onSubmit={saveContact}>
   <Fieldset legend="Contact details">
     <Input label="Name" value={name} onChange={({ value }) => setName(value)} />
     <Input label="Email" type="email" value={email} onChange={({ value }) => setEmail(value)} />
   </Fieldset>
+  <Button type="submit" label="Save contact" />
 </Form>
 ```
 

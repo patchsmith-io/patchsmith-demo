@@ -19,6 +19,15 @@ const label = z
   .string()
   .refine((value) => value.length >= 1 && value.length <= 120, "Use 1–120 characters.");
 const disabled = z.boolean().optional();
+const buttonVariant = z.enum([
+  "default",
+  "outline",
+  "secondary",
+  "ghost",
+  "destructive",
+  "destructive-outline",
+  "link",
+]);
 const externalHref = z.string().refine((value) => {
   try {
     const url = new URL(value);
@@ -224,20 +233,11 @@ export const contract = defineContract({
     Button: {
       fields: z.object({
         label,
-        variant: z
-          .enum([
-            "default",
-            "outline",
-            "secondary",
-            "ghost",
-            "destructive",
-            "destructive-outline",
-            "link",
-          ])
-          .optional(),
+        variant: buttonVariant.optional(),
         size: z.enum(["xs", "sm", "default", "lg"]).optional(),
         disabled,
         href: externalHref.optional(),
+        type: z.enum(["button", "submit", "reset"]).optional(),
       }),
       callbacks: { onClick: {} },
     },
@@ -286,7 +286,11 @@ export const contract = defineContract({
       children: true,
     },
     Form: {
-      fields: z.object({ submitLabel: label.optional(), disabled }),
+      description:
+        "Handles native form validation and submission through onSubmit. Add explicit Button children with type: 'submit'; Form adds no buttons or layout. When used inside a Dialog, wrap both the fields and DialogActions in this Form so a Button with type: 'submit' inside DialogActions submits the form. The submit button must be inside the Form.",
+      fields: z.object({
+        disabled,
+      }),
       children: true,
       callbacks: { onSubmit: {} },
     },
@@ -376,10 +380,19 @@ export const contract = defineContract({
     TableHead: { fields: z.object({ text: label }) },
     TableCell: { children: true },
     Dialog: {
-      fields: z.object({ title: label, description: text.optional(), open: z.boolean() }),
+      description:
+        "Displays a modal with a title and optional description. Put Cancel and Save Button children in DialogActions to keep them inline. For a modal form, place Form inside Dialog and wrap both the fields and DialogActions in that Form. Set Save to type: 'submit', handle saving in Form.onSubmit, and close Cancel through its onClick. Dialog handles the modal and onOpenChange, not form submission.",
+      fields: z.object({
+        title: label,
+        description: text.optional(),
+        open: z.boolean(),
+      }),
       children: true,
-      callbacks: { onOpenChange: { input: z.object({ open: z.boolean() }) } },
+      callbacks: {
+        onOpenChange: { input: z.object({ open: z.boolean() }) },
+      },
     },
+    DialogActions: { fields: z.object({}), children: true },
   },
   tools: {
     workspace: { get: serverTool(schemas.workspace.get) },
