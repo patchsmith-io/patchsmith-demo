@@ -1,0 +1,25 @@
+apps/stripe/src/slots/page/index.view.tsx
+  s_164c3294446195::t_78cb58b798cffc 172
+website/components/app/app-slot-button.tsx
+  s_164c3294446195::t_36c001ed51566c 29,48-55
+website/lib/patchsmith-client.tsx
+  s_164c3294446195::t_f8a05a9810d1a4 546-552,554-564
+website/scripts/patchsmith-charts.test.ts
+  s_164c3294446195::t_28833aa18404f4 54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "08b5ccf387e10b44b54bea081f476d5a4a9fe837",
+  "prompts": {},
+  "sessions": {
+    "s_164c3294446195": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a17140-617c-7461-9171-2ab15d53a158",
+        "model": "unknown"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
