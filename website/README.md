@@ -104,10 +104,13 @@ Run `pnpm --filter website test:agent` for the real PostgreSQL tool integration 
 
 After installation, setup fades into a brief welcome screen with an **Enter demo**
 button. Enter fades into the CRM and starts a three-step Driver.js guide: discover
-installed apps in the Apps panel, see Doom as a full-page app, then ask the agent
-to build a Quick follow-up action in the navbar. The first callout highlights the
-app tabs and introduces the preinstalled examples. The Doom step opens its installed page and closes the mobile
-apps drawer so the full-page example stays visible. Every tutorial button says
+integrations in a panel, see Stripe billing analytics as a full-page feature, then
+ask the agent to build a Quick follow-up action in the navbar. The copy explains
+how Patchsmith extends an existing app while leaving feature placement and layout
+up to the host product. The first callout highlights the whole apps panel. The
+Stripe step opens its installed overview page and closes the apps panel at every
+screen size so the full-page example stays visible. Doom remains available to
+discover in the app navigation. Every tutorial button says
 **Next**; the final one submits the example request for a contact follow-up form
 that saves a CRM task, preserving any existing composer draft and waiting until
 the agent is idle.
@@ -115,7 +118,7 @@ the agent is idle.
 Dismissal is remembered per workspace in browser storage. **Demo visitor profile →
 Replay introduction** restarts at Messages on desktop and mobile. Missing demo apps
 have explanatory fallbacks, and the tour library loads only when needed. Each
-callout has one sentence and no Skip button; Escape or clicking outside dismisses
+callout has brief, feature-focused copy and no Skip button; Escape or clicking outside dismisses
 the guide. Verify the install-to-welcome transition, Enter, contact navigation,
 dismissal/reload/replay, and the automatic navbar-action request at desktop, tablet,
 and mobile widths. App backend tools require a publicly reachable host (a deployed

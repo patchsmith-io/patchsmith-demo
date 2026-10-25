@@ -8,12 +8,12 @@ import { useDemoIntro } from "./demo-intro-provider";
 
 export function DemoIntroTour({
   ready,
-  hasDoom,
+  hasStripe,
   docked,
   onUseExample,
 }: {
   ready: boolean;
-  hasDoom: boolean;
+  hasStripe: boolean;
   docked: boolean;
   onUseExample: () => void;
 }) {
@@ -21,7 +21,7 @@ export function DemoIntroTour({
   const [loadFailed, setLoadFailed] = useState(false);
   const finish = useEffectEvent(dismiss);
   const next = useEffectEvent(() => {
-    if (step === "messages") setStep("doom");
+    if (step === "messages") setStep("stripe");
     else if (step === "agent") {
       dismiss();
       onUseExample();
@@ -35,23 +35,25 @@ export function DemoIntroTour({
 
     const content = {
       messages: {
-        element: '[data-demo="apps-tabs"]',
-        title: "Installed apps",
-        description: "Your users’ apps appear here, alongside examples we’ve preinstalled.",
+        element: '[data-demo="apps-panel"]',
+        title: "Integrations in a panel",
+        description:
+          "Patchsmith adds features to existing apps. This panel shows messaging and billing integrations; you choose how to display them in your product.",
         progress: "1 of 3",
       },
-      doom: {
-        element: hasDoom ? '[data-demo="app-page-surface"]' : '[data-demo="apps-tabs"]',
-        title: "Inside your product",
-        description: hasDoom
-          ? "You control where apps appear, from side panels to full pages like Doom."
-          : "Apps can also fill a page; Doom is unavailable right now.",
+      stripe: {
+        element: hasStripe ? '[data-demo="app-page-surface"]' : '[data-demo="apps-panel"]',
+        title: "Features as full pages",
+        description: hasStripe
+          ? "Here, we use Patchsmith to add Stripe billing analytics as a full page in the CRM. You choose which features to add and where they appear."
+          : "Patchsmith can add full-page features to your app, such as billing analytics. The Stripe example is unavailable right now.",
         progress: "2 of 3",
       },
       agent: {
         element: '[data-demo="agent-composer"]',
         title: "Build a feature",
-        description: "Next asks the agent to build a navbar button for creating follow-up tasks.",
+        description:
+          "Next asks the agent to use Patchsmith to add a follow-up button and task form to this existing CRM.",
         progress: "3 of 3",
       },
     }[step];
@@ -87,7 +89,7 @@ export function DemoIntroTour({
               popover: {
                 title: content.title,
                 description: content.description,
-                side: docked ? "left" : "top",
+                side: docked && step !== "stripe" ? "left" : "top",
                 align: "start",
               },
             },
@@ -112,7 +114,7 @@ export function DemoIntroTour({
       document.removeEventListener("keydown", onEscape, true);
       tour?.destroy();
     };
-  }, [ready, step, hasDoom, docked]);
+  }, [ready, step, hasStripe, docked]);
 
   return loadFailed && step ? (
     <Alert className="m-2 w-auto">

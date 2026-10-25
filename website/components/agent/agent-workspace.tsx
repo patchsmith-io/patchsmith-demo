@@ -85,26 +85,26 @@ export function AgentWorkspace({ children }: { children: React.ReactNode }) {
       return rank(a.id) - rank(b.id);
     });
   const messagesAppId = apps.find((app) => app.name?.toLowerCase() === "messages")?.id;
-  const doomAppId = apps.find((app) => app.name?.toLowerCase() === "doom")?.id;
-  const doomPage = pages?.find(
-    (page) => page.app.name?.toLowerCase() === "doom" && page.key === "doom",
+  const stripeAppId = apps.find((app) => app.name?.toLowerCase() === "stripe")?.id;
+  const stripePage = pages?.find(
+    (page) => page.app.name?.toLowerCase() === "stripe" && page.key === "overview",
   );
-  const doomHref = doomPage ? appPageHref(doomPage, pages) : undefined;
-  const doomVisible = pathname === doomHref;
+  const stripeHref = stripePage ? appPageHref(stripePage, pages) : undefined;
+  const stripeVisible = pathname === stripeHref;
   const introTab =
     introStep === "messages"
       ? (messagesAppId ?? "agent")
-      : introStep === "doom"
-        ? (doomAppId ?? "agent")
+      : introStep === "stripe"
+        ? (stripeAppId ?? "agent")
         : "agent";
   useEffect(() => {
     if (!introStep) return;
-    setOpen(introStep === "doom" && doomHref ? canDock : true);
+    setOpen(!(introStep === "stripe" && stripeHref));
     setOpenMobile(false);
     setHistoryOpen(false);
     setActiveTab(introTab);
-    if (introStep === "doom" && doomHref) router.push(doomHref);
-  }, [introStep, introTab, doomHref, canDock, router, setOpenMobile]);
+    if (introStep === "stripe" && stripeHref) router.push(stripeHref);
+  }, [introStep, introTab, stripeHref, router, setOpenMobile]);
   const selectedTab = apps.some((app) => app.id === activeTab) ? activeTab : "agent";
   usePanelAction(
     useCallback(
@@ -301,7 +301,7 @@ export function AgentWorkspace({ children }: { children: React.ReactNode }) {
         if (introActive) {
           if (tab === "agent") setIntroStep("agent");
           else if (tab === messagesAppId) setIntroStep("messages");
-          else if (tab === doomAppId) setIntroStep("doom");
+          else if (tab === stripeAppId) setIntroStep("stripe");
           else dismissIntro();
         }
       }}
@@ -394,13 +394,13 @@ export function AgentWorkspace({ children }: { children: React.ReactNode }) {
           (introStep !== "agent" || (!busy && !loadingChat)) &&
           !appsPending &&
           !pagesPending &&
-          (introStep === "doom" && doomHref
-            ? doomVisible && (canDock || (!open && settledSurface === null))
+          (introStep === "stripe" && stripeHref
+            ? stripeVisible && !open && (canDock || settledSurface === null)
             : open &&
               (canDock || settledSurface === (useDrawer ? "drawer" : "sheet")) &&
               selectedTab === introTab)
         }
-        hasDoom={Boolean(doomHref)}
+        hasStripe={Boolean(stripeHref)}
         docked={canDock}
         onUseExample={() => {
           void submit(FEATURE_PROMPT, true);
