@@ -38,22 +38,21 @@ export function DemoIntroTour({
         element: '[data-demo="apps-panel"]',
         title: "Integrations in a panel",
         description:
-          "Patchsmith adds features to existing apps. This panel shows messaging and billing integrations; you choose how to display them in your product.",
+          "This panel holds your integrations. You choose where they appear in your app.",
         progress: "1 of 3",
       },
       stripe: {
         element: hasStripe ? '[data-demo="app-page-surface"]' : '[data-demo="apps-panel"]',
         title: "Features as full pages",
         description: hasStripe
-          ? "Here, we use Patchsmith to add Stripe billing analytics as a full page in the CRM. You choose which features to add and where they appear."
-          : "Patchsmith can add full-page features to your app, such as billing analytics. The Stripe example is unavailable right now.",
+          ? "Features can also fill a page, like this billing dashboard."
+          : "Features can also fill a page. This example is unavailable right now.",
         progress: "2 of 3",
       },
       agent: {
         element: '[data-demo="agent-composer"]',
         title: "Build a feature",
-        description:
-          "Next asks the agent to use Patchsmith to add a follow-up button and task form to this existing CRM.",
+        description: "Next asks the agent to add a follow-up button and task form to this app.",
         progress: "3 of 3",
       },
     }[step];
