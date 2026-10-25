@@ -1,0 +1,20 @@
+website/components/demo-intro/demo-intro-tour.tsx
+  s_5eb09e552fc469::t_5fa0c50bab7019 41,48-49
+  s_5eb09e552fc469::t_0572375676c39d 55
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "49daaa724005afbf09838dd6fe66c6493e0d016b",
+  "prompts": {},
+  "sessions": {
+    "s_5eb09e552fc469": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1722c-3e61-76f1-a404-bda92920eca5",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
