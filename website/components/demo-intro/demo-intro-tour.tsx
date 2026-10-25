@@ -36,9 +36,8 @@ export function DemoIntroTour({
     const content = {
       messages: {
         element: '[data-demo="apps-panel"]',
-        title: "Integrations in a panel",
-        description:
-          "This panel holds your integrations. You choose where they appear in your app.",
+        title: "Installed extensions",
+        description: "Extensions add UI anywhere in your app, like this side panel.",
         progress: "1 of 3",
       },
       stripe: {
