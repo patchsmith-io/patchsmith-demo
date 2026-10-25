@@ -1,0 +1,25 @@
+README.md
+  s_1650ebe2cde505::t_8f53f63a2e5396 21,25-40
+apps/doom/README.md
+  s_1650ebe2cde505::t_c273c513f1c70b 3
+pnpm-lock.yaml
+  s_1650ebe2cde505::t_5b2ef32f271f0d 258-259,327,352,377,498,2344-2345,2350-2351,2354-2355,2360-2361,2365-2366,2369-2370,2373-2374,2385-2386,2391-2392,2395-2396,5546-5547,7730,7733,7781,7823,7828,7872,7877-7879,7952,7955-7957,8005,8014,8021-8022,8070,8074-8078,8128,8130-8131,8178,8180,8224,8226,11707,11709-11715,11786,11788-11794
+pnpm-workspace.yaml
+  s_1650ebe2cde505::t_02ba91358e71b2 48
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "235da4e9b1dc70ee1538f8a26f1e0522b959c813",
+  "prompts": {},
+  "sessions": {
+    "s_1650ebe2cde505": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a16d71-79f4-7db0-a24e-e53a2e9a955a",
+        "model": "unknown"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
