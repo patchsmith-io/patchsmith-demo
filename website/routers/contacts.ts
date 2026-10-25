@@ -11,7 +11,7 @@ export const listContacts = protectedProcedure
   .meta(
     aiSdkTool({
       description:
-        "Find contacts by name, company, or email. Look up a contact here before using its ID in another tool.",
+        "Find contacts by name, company, or email. With no filters, returns the complete list (the demo permits at most 50 contacts). For a contact picker, fetch once and search locally with Combobox. Look up a contact here before using its ID in another tool.",
     }),
   )
   .input(schemas.contacts.list.input)

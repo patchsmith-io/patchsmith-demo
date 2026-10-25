@@ -72,7 +72,11 @@ export const schemas = {
   },
   contacts: {
     list: {
-      input: z.object({ query, status: status.optional() }),
+      input: z
+        .object({ query, status: status.optional() })
+        .describe(
+          "Returns all matching contacts, up to the demo's 50-contact workspace limit. Pass {} for the complete list; fetch once for a Combobox and filter locally rather than calling this tool on each keystroke.",
+        ),
       output: z.object({ contacts: z.array(contactRecord), count: z.number() }),
     },
     get: {

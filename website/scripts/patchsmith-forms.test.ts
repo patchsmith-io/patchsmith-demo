@@ -5,8 +5,12 @@ import { renderToStaticMarkup } from "react-dom/server";
 import type { DialogActionsProps as DoomDialogActionsProps } from "../../apps/doom/src/patchsmith.gen";
 import type { DialogActionsProps as MessagesDialogActionsProps } from "../../apps/messages/src/patchsmith.gen";
 import type { DialogActionsProps as StripeDialogActionsProps } from "../../apps/stripe/src/patchsmith.gen";
+import type { ComboboxProps as DoomComboboxProps } from "../../apps/doom/src/patchsmith.gen";
+import type { ComboboxProps as MessagesComboboxProps } from "../../apps/messages/src/patchsmith.gen";
+import type { ComboboxProps as StripeComboboxProps } from "../../apps/stripe/src/patchsmith.gen";
 import { AppForm, AppDialogActions } from "../components/app-form";
 import { AppSlotButton } from "../components/app/app-slot-button";
+import { AppSlotCombobox } from "../components/app/app-slot-combobox";
 import { contract } from "../lib/patchsmith";
 
 void test("forms leave layout and submission controls to their caller", () => {
@@ -48,4 +52,52 @@ void test("every generated binding exposes composable dialog actions", () => {
   }
   assert.equal(contract.components.DialogActions.children, true);
   assert.equal("onSubmit" in contract.components.Dialog.callbacks, false);
+});
+
+void test("contact pickers accept the complete demo list and serialize clearing as null", async () => {
+  const props = {
+    label: "CRM contact",
+    value: null,
+    loading: true,
+    clearable: true,
+    required: false,
+    options: Array.from({ length: 50 }, (_, index) => ({
+      value: `contact-${index}`,
+      label: `Contact ${index}`,
+      description: `contact-${index}@example.com`,
+    })),
+    onChange: ({ value }: { value: string | null }) => {
+      assert.ok(value === null || typeof value === "string");
+    },
+  };
+  const generated: [DoomComboboxProps, MessagesComboboxProps, StripeComboboxProps] = [
+    props,
+    props,
+    props,
+  ];
+  for (const binding of generated) {
+    assert.equal(contract.components.Combobox.fields.safeParse(binding).success, true);
+    await binding.onChange?.({ value: null });
+  }
+  const change = contract.components.Combobox.callbacks.onChange.input;
+  assert.deepEqual(change.parse({ value: null }), { value: null });
+  assert.deepEqual(change.parse({ value: "contact-49" }), { value: "contact-49" });
+  assert.equal(change.safeParse({ value: 49 }).success, false);
+});
+
+void test("loading contact pickers keep their labeled input and omit premature empty feedback", () => {
+  const props = { label: "CRM contact", value: null, options: [], required: true };
+  const loading = renderToStaticMarkup(createElement(AppSlotCombobox, { ...props, loading: true }));
+  const ready = renderToStaticMarkup(createElement(AppSlotCombobox, props));
+  for (const html of [loading, ready]) {
+    const inputId = /<input[^>]*id="([^"]+)"/.exec(html)?.[1];
+    assert.ok(inputId);
+    assert.ok(html.includes(`for="${inputId}"`));
+    assert.match(html, /role="combobox"/);
+    assert.doesNotMatch(html, /No results found/);
+  }
+  assert.match(loading, /aria-busy="true"/);
+  assert.match(loading, /Loading crm contact options/);
+  assert.match(loading, /<input[^>]*disabled=""/);
+  assert.doesNotMatch(ready, /aria-busy="true"/);
 });
