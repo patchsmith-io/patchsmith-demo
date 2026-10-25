@@ -42,7 +42,7 @@ export function DemoIntroTour({
       },
       stripe: {
         element: hasStripe ? '[data-demo="app-page-surface"]' : '[data-demo="apps-panel"]',
-        title: "Features as full pages",
+        title: "Let apps extend your UI",
         description: hasStripe
           ? "Features can also fill a page, like this billing dashboard."
           : "Features can also fill a page. This example is unavailable right now.",
