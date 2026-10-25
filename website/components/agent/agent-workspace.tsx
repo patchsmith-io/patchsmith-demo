@@ -21,7 +21,7 @@ import { Sheet, SheetPopup, SheetTitle } from "@/components/ui/sheet";
 import { useSidebar } from "@/components/ui/sidebar";
 import { AppMobileNavigation } from "@/components/app/app-mobile-navigation";
 import { AppsPanelContext } from "./apps-panel-context";
-import { AppsPanel } from "./apps-panel";
+import { AppsPanel, type PanelApp } from "./apps-panel";
 import {
   Drawer,
   DrawerContent,
@@ -45,6 +45,8 @@ import { patchsmithQueryKey } from "@/lib/patchsmith-queries";
 import { DemoIntroTour } from "@/components/demo-intro/demo-intro-tour";
 import { FEATURE_PROMPT, useDemoIntro } from "@/components/demo-intro/demo-intro-provider";
 import { appPageHref } from "@/lib/app-pages";
+
+const DEFAULT_APP_ORDER = ["stripe", "messages", "doom"];
 
 export function AgentWorkspace({ children }: { children: React.ReactNode }) {
   const { step: introStep, setStep: setIntroStep, dismiss: dismissIntro } = useDemoIntro();
@@ -78,11 +80,13 @@ export function AgentWorkspace({ children }: { children: React.ReactNode }) {
   const apps = (views ?? [])
     .map((view) => view.app)
     .sort((a, b) => {
-      const rank = (id: string) => {
+      const rank = ({ id, name }: PanelApp) => {
         const index = appOrder.indexOf(id);
-        return index < 0 ? Infinity : index;
+        if (index >= 0) return index;
+        const defaultIndex = DEFAULT_APP_ORDER.indexOf(name?.toLowerCase() ?? "");
+        return appOrder.length + (defaultIndex < 0 ? DEFAULT_APP_ORDER.length : defaultIndex);
       };
-      return rank(a.id) - rank(b.id);
+      return rank(a) - rank(b);
     });
   const messagesAppId = apps.find((app) => app.name?.toLowerCase() === "messages")?.id;
   const stripeAppId = apps.find((app) => app.name?.toLowerCase() === "stripe")?.id;
