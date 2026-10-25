@@ -1,0 +1,27 @@
+website/components/demo-intro/demo-intro-provider.tsx
+  s_5eb09e552fc469::t_dc297220c4af69 8
+website/README.md
+  s_5eb09e552fc469::t_dc297220c4af69 107-113,121
+website/components/demo-intro/demo-intro-tour.tsx
+  s_5eb09e552fc469::t_dc297220c4af69 11,16,24,38-41,44-49,55-56,92,117
+website/components/agent/apps-panel.tsx
+  s_5eb09e552fc469::t_dc297220c4af69 90
+website/components/agent/agent-workspace.tsx
+  s_5eb09e552fc469::t_dc297220c4af69 88-90,92-93,97-98,102,106-107,304,397-398,403
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f1cb0ebde51ac000d14cf1edd5bf2e78f9d4e848",
+  "prompts": {},
+  "sessions": {
+    "s_5eb09e552fc469": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1722c-3e61-76f1-a404-bda92920eca5",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
