@@ -1,0 +1,45 @@
+apps/doom/src/patchsmith.gen.ts
+  s_3efa652005e53c::t_45aac8c5c4f4ea 1253-1255,1271-1273,1276,1280-1282
+apps/stripe/src/patchsmith.gen.ts
+  s_3efa652005e53c::t_45aac8c5c4f4ea 1253-1255,1271-1273,1276,1280-1282
+website/routers/contacts.ts
+  s_3efa652005e53c::t_69b9f0d93294ae 14
+website/lib/patchsmith-client.tsx
+  s_3efa652005e53c::t_69b9f0d93294ae 32,242
+website/README.md
+  s_3efa652005e53c::t_4e900a67451d8a 168-170
+website/components/app/app-slot-combobox.tsx
+  s_3efa652005e53c::t_69b9f0d93294ae 1-50,52-86
+  s_3efa652005e53c::t_63f8ee7296b39c 51
+website/lib/patchsmith-server.ts
+  s_3efa652005e53c::t_69b9f0d93294ae 27-28
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Select.md
+  s_3efa652005e53c::t_45aac8c5c4f4ea 4-5
+website/lib/patchsmith.ts
+  s_3efa652005e53c::t_69b9f0d93294ae 324-325,339-340,355-357,360
+apps/messages/src/patchsmith.gen.ts
+  s_3efa652005e53c::t_45aac8c5c4f4ea 1253-1255,1271-1273,1276,1280-1282
+website/scripts/patchsmith-forms.test.ts
+  s_3efa652005e53c::t_23ebc537e58841 8-10,13,56,58-79,81-103
+  s_3efa652005e53c::t_df281b37ed8a1b 57,80
+website/routers/schemas.ts
+  s_3efa652005e53c::t_d9d3fa4a0d2641 75-79
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Combobox.md
+  s_3efa652005e53c::t_45aac8c5c4f4ea 4-5,18-20,29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "317c3a06682ce223827020685b69519c9d916a3a",
+  "prompts": {},
+  "sessions": {
+    "s_3efa652005e53c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1716d-49f1-7542-932c-e38b4acb9e3f",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
