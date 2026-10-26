@@ -101,3 +101,26 @@ void test("loading contact pickers keep their labeled input and omit premature e
   assert.match(loading, /<input[^>]*disabled=""/);
   assert.doesNotMatch(ready, /aria-busy="true"/);
 });
+
+void test("loading preserves required picker validation unless explicitly disabled", () => {
+  for (const loading of [false, true]) {
+    for (const disabled of [false, true]) {
+      const html = renderToStaticMarkup(
+        createElement(AppSlotCombobox, {
+          label: "Required choice",
+          value: null,
+          options: [],
+          required: true,
+          loading,
+          disabled,
+        }),
+      );
+      const validationInput = html
+        .match(/<input\b[^>]*>/g)
+        ?.find((input) => /\brequired=""/.test(input));
+      assert.ok(validationInput, "The picker must retain its required validation input");
+      assert.equal(/\bdisabled=""/.test(validationInput), disabled);
+      assert.doesNotMatch(validationInput, /\breadonly=""/i);
+    }
+  }
+});

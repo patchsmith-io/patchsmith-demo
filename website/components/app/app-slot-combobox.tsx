@@ -37,7 +37,7 @@ export function AppSlotCombobox({
       <Combobox
         items={options}
         value={options.find((option) => option.value === value) ?? null}
-        disabled={disabled || loading}
+        disabled={disabled}
         required={required}
         autoHighlight
         isItemEqualToValue={(option, selected) => option.value === selected.value}
@@ -51,6 +51,7 @@ export function AppSlotCombobox({
         <div className="relative w-full">
           <ComboboxInput
             id={id}
+            disabled={loading}
             aria-busy={loading || undefined}
             placeholder={placeholder}
             showTrigger={!loading}
@@ -65,21 +66,23 @@ export function AppSlotCombobox({
             />
           ) : null}
         </div>
-        <ComboboxPopup>
-          <ComboboxEmpty>{emptyMessage}</ComboboxEmpty>
-          <ComboboxList>
-            {(option) => (
-              <ComboboxItem key={option.value} value={option}>
-                <span className="flex flex-col">
-                  <span>{option.label}</span>
-                  {option.description ? (
-                    <span className="text-xs text-muted-foreground">{option.description}</span>
-                  ) : null}
-                </span>
-              </ComboboxItem>
-            )}
-          </ComboboxList>
-        </ComboboxPopup>
+        {loading ? null : (
+          <ComboboxPopup>
+            <ComboboxEmpty>{emptyMessage}</ComboboxEmpty>
+            <ComboboxList>
+              {(option) => (
+                <ComboboxItem key={option.value} value={option}>
+                  <span className="flex flex-col">
+                    <span>{option.label}</span>
+                    {option.description ? (
+                      <span className="text-xs text-muted-foreground">{option.description}</span>
+                    ) : null}
+                  </span>
+                </ComboboxItem>
+              )}
+            </ComboboxList>
+          </ComboboxPopup>
+        )}
       </Combobox>
     </Field>
   );
