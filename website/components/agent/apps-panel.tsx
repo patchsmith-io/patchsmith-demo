@@ -87,6 +87,7 @@ export function AppsPanel({
   return (
     <MotionConfig reducedMotion="user">
       <Tabs
+        data-demo="apps-panel"
         value={activeTab}
         onValueChange={(value) => onTabChange(String(value))}
         className="h-full min-h-0 w-full min-w-0 gap-0 overflow-hidden"
