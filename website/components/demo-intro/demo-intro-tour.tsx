@@ -32,6 +32,7 @@ export function DemoIntroTour({
     if (!ready || !step) return;
     let cancelled = false;
     let tour: Driver | undefined;
+    let cleanupPopover: (() => void) | undefined;
 
     const content = {
       messages: {
@@ -77,7 +78,41 @@ export function DemoIntroTour({
           onDestroyed: (_element, _step, { reason }) => {
             if (!cancelled && reason !== "api") finish();
           },
-          onPopoverRender: ({ nextButton }) => {
+          onPopoverRender: ({ wrapper, nextButton }, { state }) => {
+            const surface = state.activeElement;
+            if (
+              step === "stripe" &&
+              hasStripe &&
+              surface?.matches('[data-demo="app-page-surface"]')
+            ) {
+              // Keep the full page highlighted. Driver's outside placement falls
+              // back to bottom-center when a surface fills the viewport.
+              wrapper.classList.add("demo-tour-page-popover");
+              const positionPopover = () => {
+                const bounds = surface.getBoundingClientRect();
+                const left = Math.max(
+                  12,
+                  Math.min(bounds.left + 16, window.innerWidth - wrapper.offsetWidth - 12),
+                );
+                const top = Math.max(
+                  12,
+                  Math.min(bounds.top + 16, window.innerHeight - wrapper.offsetHeight - 12),
+                );
+                wrapper.style.setProperty("--demo-tour-left", `${left}px`);
+                wrapper.style.setProperty("--demo-tour-top", `${top}px`);
+              };
+              positionPopover();
+              const observer = new ResizeObserver(positionPopover);
+              observer.observe(surface);
+              observer.observe(wrapper);
+              window.addEventListener("resize", positionPopover);
+              window.addEventListener("scroll", positionPopover, true);
+              cleanupPopover = () => {
+                observer.disconnect();
+                window.removeEventListener("resize", positionPopover);
+                window.removeEventListener("scroll", positionPopover, true);
+              };
+            }
             nextButton.focus();
           },
           steps: [
@@ -110,6 +145,7 @@ export function DemoIntroTour({
     return () => {
       cancelled = true;
       document.removeEventListener("keydown", onEscape, true);
+      cleanupPopover?.();
       tour?.destroy();
     };
   }, [ready, step, hasStripe, docked]);
