@@ -12,7 +12,7 @@ import { defineContract } from "patchsmith";
 import { createFileServer, createServer, type Identity } from "patchsmith/server";
 import { database } from "../../apps/stripe/db";
 import billingRouter from "../../apps/stripe/functions/billing.router";
-import { seedBilling, summarize, type Contact, type Customer } from "../../apps/stripe/billing";
+import { seedBilling, summarize, type Contact, type Customer } from "../../apps/stripe/lib/billing";
 import { installStripe } from "../lib/install-stripe";
 import { appPageHref, findAppPage } from "../lib/app-pages";
 import { contract } from "../lib/patchsmith";

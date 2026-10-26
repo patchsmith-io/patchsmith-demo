@@ -17,8 +17,8 @@ import {
   Text,
   tools,
 } from "#patchsmith";
-import { channels, examples, type Channel, type Contact } from "../../messages";
-import { useMessages } from "../../use-messages";
+import { channels, examples, type Channel, type Contact } from "../../lib/messages";
+import { useMessages } from "../../lib/use-messages";
 
 const view = defineView({ view: "/", component: Inbox });
 

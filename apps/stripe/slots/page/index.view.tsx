@@ -22,9 +22,9 @@ import {
   tools,
 } from "#patchsmith";
 import { useState } from "preact/hooks";
-import { useBilling } from "../../use-billing";
-import { BillingStatus, LoadState, Stat } from "../../components";
-import { money, shortDate, summarize } from "../../billing";
+import { useBilling } from "../../lib/use-billing";
+import { BillingStatus, LoadState, Stat } from "../../lib/components";
+import { money, shortDate, summarize } from "../../lib/billing";
 
 const view = defineView({
   view: "/",
