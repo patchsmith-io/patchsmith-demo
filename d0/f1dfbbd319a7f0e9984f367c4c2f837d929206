@@ -1,0 +1,49 @@
+website/scripts/stripe.test.ts
+  s_347b6e9f1ced2d::t_cdab446e57e03b 220
+website/components/agent/agent-workspace.tsx
+  s_347b6e9f1ced2d::t_cdab446e57e03b 96
+website/scripts/app-pages.test.ts
+  s_347b6e9f1ced2d::t_40b98d01ed2e24 4,15-20,29,32,37-40,43,46-50,52-64
+  s_347b6e9f1ced2d::t_da8c3817d3e19e 7-13,21-24,51
+apps/doom/patchsmith.gen.ts
+  s_347b6e9f1ced2d::t_4ef2415092c909 580-582,898
+apps/doom/README.md
+  s_347b6e9f1ced2d::t_da8c3817d3e19e 3,22,32
+  s_347b6e9f1ced2d::t_fab031337a3a27 30
+website/lib/patchsmith-client.tsx
+  s_347b6e9f1ced2d::t_cdab446e57e03b 23,102,106,112,115,312-317,347,352,359-362,364-366,378,389
+  s_347b6e9f1ced2d::t_4a03eb747e248e 363
+website/components/app/app-page.tsx
+  s_347b6e9f1ced2d::t_cdab446e57e03b 69
+website/lib/app-pages.ts
+  s_347b6e9f1ced2d::t_cdab446e57e03b 7-9,15,28,36,49-50
+  s_347b6e9f1ced2d::t_40b98d01ed2e24 17,29-31
+  s_347b6e9f1ced2d::t_da8c3817d3e19e 10-13,41-48
+  s_347b6e9f1ced2d::t_6a38929851dec8 51-52
+website/lib/patchsmith.ts
+  s_347b6e9f1ced2d::t_cdab446e57e03b 433
+apps/doom/slots/panel/index.view.tsx
+  s_347b6e9f1ced2d::t_cdab446e57e03b 13
+website/components/app/app-mobile-navigation.tsx
+  s_347b6e9f1ced2d::t_cdab446e57e03b 87
+website/components/app/app-sidebar.tsx
+  s_347b6e9f1ced2d::t_cdab446e57e03b 74
+website/scripts/patchsmith-queries.test.ts
+  s_347b6e9f1ced2d::t_dac02adb2a9bcf 4,11,59-61
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d0f1dfbbd319a7f0e9984f367c4c2f837d929206",
+  "prompts": {},
+  "sessions": {
+    "s_347b6e9f1ced2d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a17734-7ad3-7583-bbff-6e658bdef9fa",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
