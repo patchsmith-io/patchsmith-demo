@@ -1,0 +1,21 @@
+website/components/app/app-slot-combobox.tsx
+  s_092197e93df9a7::t_9cb09613b20624 40,54,69-85
+website/scripts/patchsmith-forms.test.ts
+  s_092197e93df9a7::t_14d67a6decef8f 104-126
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f8f2034689519129e1213e1c48fa9874ad950234",
+  "prompts": {},
+  "sessions": {
+    "s_092197e93df9a7": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1768e-373c-7001-ba8c-cc7d7140d0a9",
+        "model": "unknown"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
