@@ -1,0 +1,37 @@
+README.md
+  s_d5fa7ba1af39c9::t_9394fb56a3879e 29
+apps/doom/slots/page/index.view.tsx
+  s_d5fa7ba1af39c9::t_b4655fa5fa15e5 5
+apps/messages/slots/panel/contacts.detail.view.tsx
+  s_d5fa7ba1af39c9::t_cca2341f7bb0c4 25-26
+apps/messages/slots/panel/index.view.tsx
+  s_d5fa7ba1af39c9::t_0f836dafbc5d75 20-21
+apps/stripe/functions/billing.router.ts
+  s_d5fa7ba1af39c9::t_e28e4b6543c111 6
+apps/stripe/slots/navbar/contacts.detail.view.tsx
+  s_d5fa7ba1af39c9::t_069bb2f172bb9f 3
+apps/stripe/slots/page/index.view.tsx
+  s_d5fa7ba1af39c9::t_904fdb90a6f550 25-27
+apps/stripe/slots/panel/contacts.detail.view.tsx
+  s_d5fa7ba1af39c9::t_a5f8efedbb1560 3-5
+website/scripts/messages.test.ts
+  s_d5fa7ba1af39c9::t_aad12a042ec09e 3-8
+website/scripts/stripe.test.ts
+  s_d5fa7ba1af39c9::t_58cf13848cf8e2 15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "40af8b46fe51a41b4071b5e82763497bc163c412",
+  "prompts": {},
+  "sessions": {
+    "s_d5fa7ba1af39c9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a176af-5244-7a60-a73e-741b2526b9e0",
+        "model": "unknown"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
