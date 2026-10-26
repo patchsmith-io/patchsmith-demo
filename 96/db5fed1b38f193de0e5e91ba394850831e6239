@@ -1,0 +1,25 @@
+README.md
+  s_d5fa7ba1af39c9::t_c9063e2d62c787 27-29
+apps/messages/.agents/skills/patchsmith-capabilities/references/index.md
+  s_d5fa7ba1af39c9::t_c44bfb38204a52 9
+pnpm-lock.yaml
+  s_d5fa7ba1af39c9::t_21e95d0b39a907 258-259,327,352,377,498,1760,2345-2346,2351-2352,2355-2356,2361-2362,2366-2367,2370-2371,2374-2375,2386-2387,2392-2393,2396-2397,5547-5548,7731,7734,7782,7824,7829,7873,7878-7880,7953,7956-7958,8006,8015,8022-8023,8071,8075-8079,8129,8131-8132,8179,8181,8225,8227,11708,11710-11716,11787,11789-11795
+pnpm-workspace.yaml
+  s_d5fa7ba1af39c9::t_f0c67f00da7b3a 48
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "96db5fed1b38f193de0e5e91ba394850831e6239",
+  "prompts": {},
+  "sessions": {
+    "s_d5fa7ba1af39c9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a176af-5244-7a60-a73e-741b2526b9e0",
+        "model": "unknown"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
