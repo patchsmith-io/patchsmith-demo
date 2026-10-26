@@ -12,4 +12,4 @@ export const run = async (input: Parameters<typeof tools.deals.delete>[0]) =>
   await tools.deals.delete(input);
 ```
 
-Exact contracts: [generated bindings](../../../../../src/patchsmith.gen.ts); search for the tool name in PatchsmithTools or PatchsmithBackendTools.
+Exact contracts: [generated bindings](../../../../../patchsmith.gen.ts); search for the tool name in PatchsmithTools or PatchsmithBackendTools.

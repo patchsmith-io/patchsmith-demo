@@ -24,7 +24,7 @@ Refresh bindings against a running CRM:
 pnpm --filter @demo/messages generate
 ```
 
-The host URL is configured in `patchsmith.config.ts` and currently points to `https://demo.patchsmith.io/api/patchsmith`. The generated `src/patchsmith.gen.ts` is committed so builds don't need a running host.
+The host URL is configured in `patchsmith.config.ts` and currently points to `https://demo.patchsmith.io/api/patchsmith`. The generated `patchsmith.gen.ts` is committed so builds don't need a running host.
 
 Publish Messages once through the CLI against a configured host:
 

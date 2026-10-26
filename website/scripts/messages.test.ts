@@ -1,11 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import {
-  channels,
-  encodeMessage,
-  readMessages,
-  type Activity,
-} from "../../apps/messages/src/messages";
+import { channels, encodeMessage, readMessages, type Activity } from "../../apps/messages/messages";
 
 const activity = (description: string, overrides: Partial<Activity> = {}): Activity => ({
   id: "message-1",

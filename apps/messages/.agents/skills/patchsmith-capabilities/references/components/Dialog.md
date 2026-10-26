@@ -4,7 +4,7 @@ Generated from the host contract. Regenerate with `patchsmith generate`; treat h
 Displays a modal with a title and optional description. Put Cancel and Save Button children in DialogActions to keep them inline. For a modal form, place Form inside Dialog and wrap both the fields and DialogActions in that Form. Set Save to type: 'submit', handle saving in Form.onSubmit, and close Cancel through its onClick. Dialog handles the modal and onOpenChange, not form submission.
 
 Import from `#patchsmith`. Accepts children between JSX tags.
-Exact contract: [generated bindings](../../../../../src/patchsmith.gen.ts); search for `DialogProps`.
+Exact contract: [generated bindings](../../../../../patchsmith.gen.ts); search for `DialogProps`.
 
 ## Props
 

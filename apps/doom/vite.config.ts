@@ -4,9 +4,9 @@ import { patchsmith } from "patchsmith/vite";
 export default defineConfig({
   plugins: lazyPlugins(() => [patchsmith()]),
   lint: {
-    ignorePatterns: ["src/patchsmith.gen.ts", "src/patchsmith.functions.gen.ts", ".patchsmith/**"],
+    ignorePatterns: ["patchsmith.gen.ts", "patchsmith.functions.gen.ts", ".patchsmith/**"],
   },
   fmt: {
-    ignorePatterns: ["src/patchsmith.gen.ts", "src/patchsmith.functions.gen.ts", ".patchsmith/**"],
+    ignorePatterns: ["patchsmith.gen.ts", "patchsmith.functions.gen.ts", ".patchsmith/**"],
   },
 });

@@ -4,7 +4,7 @@ Generated from the host contract. Regenerate with `patchsmith generate`; treat h
 Choose one value from a short fixed list. For searchable record pickers such as contacts, use Combobox instead; it combines search and selection in one input.
 
 Import from `#patchsmith`. Does not accept children.
-Exact contract: [generated bindings](../../../../../src/patchsmith.gen.ts); search for `SelectProps`.
+Exact contract: [generated bindings](../../../../../patchsmith.gen.ts); search for `SelectProps`.
 
 ## Props
 
