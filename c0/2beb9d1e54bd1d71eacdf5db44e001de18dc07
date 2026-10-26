@@ -1,0 +1,22 @@
+apps/doom/lib/doom.ts
+  s_347b6e9f1ced2d::t_dfdb74e414e623 143-145
+apps/doom/README.md
+  s_347b6e9f1ced2d::t_dfdb74e414e623 11
+  s_347b6e9f1ced2d::t_1e0048f9495010 12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c02beb9d1e54bd1d71eacdf5db44e001de18dc07",
+  "prompts": {},
+  "sessions": {
+    "s_347b6e9f1ced2d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a17734-7ad3-7583-bbff-6e658bdef9fa",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
