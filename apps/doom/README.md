@@ -8,8 +8,6 @@ The app runs [ozkl/doomgeneric](https://github.com/ozkl/doomgeneric)'s published
 
 Audio is disabled (`-nosound`): the opaque iframe cannot receive the user activation needed by Web Audio through the canvas input bridge. There is no host audio bridge in this demo.
 
-SDL creates a WebGL context through Emscripten's EGL layer. The app enables `preserveDrawingBuffer` on that context before starting Doom, so Safari cannot discard the source pixels between ticks that repaint. This also keeps the paused image available for subsequent copies to the bridge's 2D canvas. The SDK hook's buffer-preservation option applies to that separate bridge canvas; it does not preserve SDL's WebGL source.
-
 Opening the game downloads about 11.8 MB from [the author's browser build](https://ozkl.github.io/doomgeneric/): `doomgeneric.js`, `doomgeneric.wasm`, and `doomgeneric.data`. SHA-256 subresource integrity pins all three to the build verified on 2026-10-21. An upstream asset change fails visibly; review the upstream changes and update the hashes together. Network access to that origin is required. The data package includes Doom shareware and sound assets; this repo does not redistribute game data or the engine. Upstream's engine is GPL-2.0; game data has its own license. Source and build instructions are in the upstream repository.
 
 From the workspace root:
