@@ -1,13 +1,14 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { dehydrate, hydrate, keepPreviousData, QueryObserver } from "@tanstack/react-query";
+import { appPageHref } from "../lib/app-pages";
 import { makeQueryClient } from "../lib/query-client";
 import { orpc } from "../lib/orpc";
 import { viewsQueryOptions, type ViewsApi } from "../lib/patchsmith-queries";
 
 const workspace = { id: "workspace-a", name: "Demo" };
 const page = {
-  app: { id: "doom", name: "Doom" },
+  app: { id: "doom", name: "Doom", slug: "app-installed-doom" },
   key: "doom",
   data: { difficulty: "normal" },
   metadata: { label: "Play Doom" },
@@ -55,7 +56,9 @@ void test("pending server prefetch hydrates and deduplicates browser consumers w
     assert.deepEqual(await sidebar, ready);
     assert.deepEqual(await appPage, ready);
     assert.deepEqual(await browser.fetchQuery(options), ready);
-    assert.deepEqual(new QueryObserver(browser, options).getCurrentResult().data, [page]);
+    const hydratedPages = new QueryObserver(browser, options).getCurrentResult().data;
+    assert.deepEqual(hydratedPages, [page]);
+    assert.equal(appPageHref(hydratedPages![0]), "/apps/app-installed-doom/doom");
     assert.equal(requests, 1);
   } finally {
     server.clear();

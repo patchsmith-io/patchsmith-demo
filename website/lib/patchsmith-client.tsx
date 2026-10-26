@@ -20,6 +20,7 @@ import {
 } from "./patchsmith-queries";
 
 import { cn } from "@/lib/utils";
+import { installedAppPageHref } from "./app-pages";
 import {
   CreditCardIcon,
   FileIcon,
@@ -98,17 +99,20 @@ function LabeledControl({ label, children }: { label: string; children: ReactNod
 
 type HostAction =
   | { type: "navigate"; href: string }
+  | { type: "open-app-page"; appId: string; instanceKey: string }
   | { type: "open-panel"; appId: string }
   | { type: "refresh" }
   | { type: "theme"; theme: "light" | "dark" | "system" };
+type HostActionDetail = { action: HostAction; handled: boolean; result?: Promise<void> };
 const hostActionEvent = "patchsmith:host-action";
 const AppChart = dynamic(loadAppChart, {
   loading: () => <Skeleton className="h-64 w-full" aria-hidden="true" />,
 });
 function dispatch(action: HostAction) {
-  const detail = { action, handled: false };
+  const detail: HostActionDetail = { action, handled: false };
   window.dispatchEvent(new CustomEvent(hostActionEvent, { detail }));
   if (!detail.handled) throw new Error("The workspace is not ready. Please try again.");
+  return detail.result;
 }
 
 export const patchsmithClient = createClient({
@@ -305,6 +309,12 @@ export const patchsmithClient = createClient({
   tools: {
     ui: {
       navigate: ({ input }) => dispatch({ type: "navigate", href: input.href }),
+      openAppPage: ({ input, context }) =>
+        dispatch({
+          type: "open-app-page",
+          appId: context.identity.installationId,
+          instanceKey: input.instanceKey,
+        }),
       openPanel: ({ context }) =>
         dispatch({ type: "open-panel", appId: context.identity.installationId }),
       refresh: () => dispatch({ type: "refresh" }),
@@ -334,17 +344,26 @@ export function PatchsmithProvider({
   workspace: ViewWorkspace;
 }) {
   const router = useRouter();
+  const pathname = usePathname();
   const queryClient = useQueryClient();
   const { setTheme } = useTheme();
   useEffect(() => {
     function handle(event: Event) {
-      const { detail } = event as CustomEvent<{ action: HostAction; handled: boolean }>;
+      const { detail } = event as CustomEvent<HostActionDetail>;
       if (detail.action.type === "open-panel") return;
       detail.handled = true;
       switch (detail.action.type) {
         case "navigate":
           router.push(detail.action.href);
           break;
+        case "open-app-page": {
+          const { appId, instanceKey } = detail.action;
+          const options = viewsQueryOptions(patchsmithClient.api, workspace, "page", pathname);
+          detail.result = queryClient.fetchQuery(options).then((result) => {
+            router.push(installedAppPageHref(options.select!(result), appId, instanceKey));
+          });
+          break;
+        }
         case "refresh":
           void queryClient.invalidateQueries({ queryKey: orpc.key() });
           void queryClient.invalidateQueries({ queryKey: patchsmithQueryKey });
@@ -356,7 +375,7 @@ export function PatchsmithProvider({
     }
     window.addEventListener(hostActionEvent, handle);
     return () => window.removeEventListener(hostActionEvent, handle);
-  }, [router, setTheme, queryClient]);
+  }, [router, setTheme, queryClient, workspace, pathname]);
   return (
     <WorkspaceContext value={workspace}>
       <patchsmithClient.Provider>{children}</patchsmithClient.Provider>
@@ -367,7 +386,7 @@ export function PatchsmithProvider({
 export function usePanelAction(openApp: (appId: string) => void) {
   useEffect(() => {
     function handle(event: Event) {
-      const { detail } = event as CustomEvent<{ action: HostAction; handled: boolean }>;
+      const { detail } = event as CustomEvent<HostActionDetail>;
       if (detail.action.type !== "open-panel") return;
       openApp(detail.action.appId);
       detail.handled = true;

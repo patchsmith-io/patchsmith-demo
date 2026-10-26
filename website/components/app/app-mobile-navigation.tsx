@@ -84,7 +84,7 @@ export function AppMobileNavigation({ onOpen }: { onOpen: () => void }) {
                 <DrawerMenuGroup>
                   <DrawerMenuGroupLabel>App pages</DrawerMenuGroupLabel>
                   {pages.map((page) => {
-                    const href = appPageHref(page, pages);
+                    const href = appPageHref(page);
                     const active = pathname === href;
                     return (
                       <DrawerMenuItem

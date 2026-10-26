@@ -1,6 +1,6 @@
 # Doom
 
-A Patchsmith app in the CRM's full-page `page` slot, with a lightweight placeholder in the `panel` slot linking directly to `/apps/doom/doom`. Its single page instance is labelled **Can it run DOOM?** in App pages. The host resolves that slug and instance key within the authenticated workspace. Publish the updated Doom app alongside the website so installed panels use the new URL. The host and app share the SDK version in `pnpm-workspace.yaml`.
+A Patchsmith app in the CRM's full-page `page` slot, with a lightweight placeholder in the `panel` slot opening its own installed page with `tools.ui.openAppPage({ instanceKey: "doom" })`. Its single page instance is labelled **Can it run DOOM?** in App pages. Page URLs use `/apps/{app.slug}/{instanceKey}` with the platform slug, rather than a slug derived from the display name. The host resolves that slug and instance key within the authenticated workspace. Deploy the website before publishing the updated Doom app so installed panels can call the new navigation tool. The host and app share the SDK version in `pnpm-workspace.yaml`.
 
 Opening **App pages → Can it run DOOM?** or the panel's **Play Doom** link automatically launches the first level; click the game to focus it. Enter selects menu items; P opens or closes the menu. Arrow keys turn and move; W/S move forward/backward and A/D strafe using Doom's native Alt + arrow controls. While either is held, Left/Right also strafe; releasing A/D restores turning. The upstream build's dedicated strafe defaults are custom key codes, not comma/period, and its config-file loading is disabled. Space or F fires, E opens doors, Shift runs, and 1–7 select weapons. Tab releases focus. Pause freezes the game; Resume continues it; Restart starts a fresh first level. Leaving the page disposes the engine. Saves are in-memory and disappear on restart or navigation. Keyboard input is required.
 
@@ -19,7 +19,7 @@ pnpm --filter @demo/doom test
 pnpm --filter @demo/doom run deploy --no-interactive
 ```
 
-The committed generated bindings include `Canvas`. App source lives directly under this directory, with the shared shell at `slots/root.tsx`. The CLI discovers backend routers under `functions/**/*.router.ts` and creates the private server entry automatically. Doom currently has no backend functions; its panel links to the fixed `/apps/doom/doom` page URL.
+The committed generated bindings include `Canvas`. App source lives directly under this directory, with the shared shell at `slots/root.tsx`. The CLI discovers backend routers under `functions/**/*.router.ts` and creates the private server entry automatically. Doom currently has no backend functions; its panel asks the host to open the `doom` instance belonging to its installation.
 
 Run generation after adding or moving function modules, and commit both `patchsmith.gen.ts` and the type-only `patchsmith.functions.gen.ts` registry. Generate against an upgraded host (the deployed host must include this branch's canvas contract):
 
@@ -27,6 +27,6 @@ Run generation after adding or moving function modules, and commit both `patchsm
 pnpm --filter @demo/doom generate
 ```
 
-Publish before deploying the CRM. The app ID in `patchsmith.config.ts` is imported by workspace setup. Setup version 3 installs the shared published app for new and returning workspaces without reseeding data or reinstalling Messages. `PATCHSMITH_PROJECT_KEY` must belong to the same project as the published source app. Existing installations remain pinned to their published deployment, per the SDK installation model.
+For this navigation update, deploy the CRM first, then publish Doom and update its existing installations. Keep the same source app ID when publishing updates. The app ID in `patchsmith.config.ts` is imported by workspace setup. Setup version 3 installs the shared published app for new and returning workspaces without reseeding data or reinstalling Messages. `PATCHSMITH_PROJECT_KEY` must belong to the same project as the published source app. Existing installations remain pinned to their published deployment, per the SDK installation model.
 
-The app keeps the name **Doom**. Its page heading, sidebar entry (desktop and mobile), and panel tab share the published app logo, with light and dark variants. The bundled wordmark is from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Doom_–_Game’s_logo.svg), credited to id Software / Bethesda. Publish a new Doom deployment and update installations to roll out the logo and page label. The instance key remains `doom`, preserving existing links.
+The app keeps the name **Doom**. Its page heading, sidebar entry (desktop and mobile), and panel tab share the published app logo, with light and dark variants. The bundled wordmark is from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Doom_–_Game’s_logo.svg), credited to id Software / Bethesda. Publish a new Doom deployment and update installations to roll out the logo and page label. The instance key remains `doom`; the app segment is the platform slug. Old display-name URLs only keep working when they match that slug.

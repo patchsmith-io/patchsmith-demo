@@ -577,6 +577,9 @@ export type PatchsmithTools = {
     navigate: (input: {
       href: string;
     }) => Promise<void>;
+    openAppPage: (input: {
+      instanceKey: string;
+    }) => Promise<void>;
     openPanel: (input?: undefined) => Promise<void>;
     refresh: (input?: undefined) => Promise<void>;
     setTheme: (input: {
@@ -892,6 +895,7 @@ export const tools = {
 ,
   ui: {
     navigate: (input?: unknown) => callTool("client", "ui.navigate", input),
+    openAppPage: (input?: unknown) => callTool("client", "ui.openAppPage", input),
     openPanel: (input?: unknown) => callTool("client", "ui.openPanel", input),
     refresh: (input?: unknown) => callTool("client", "ui.refresh", input),
     setTheme: (input?: unknown) => callTool("client", "ui.setTheme", input),
