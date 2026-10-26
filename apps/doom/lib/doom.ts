@@ -140,6 +140,9 @@ export async function createDoom(
         `${script}\n
         var nextFrame;
         Browser.requestAnimationFrame = function(callback) { nextFrame = callback; };
+        // SDL renders through EGL/WebGL. The source must survive browser frame
+        // boundaries and ticks that do not repaint, including while paused.
+        EGL.contextAttributes.preserveDrawingBuffer = true;
         return { start: function() { callMain(Module.arguments); }, tick: function() {
           var callback = nextFrame;
           nextFrame = undefined;
