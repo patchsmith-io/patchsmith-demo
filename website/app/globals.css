@@ -21,6 +21,18 @@
   box-shadow: 0 8px 32px color-mix(in srgb, var(--foreground) 12%, transparent);
 }
 
+/* This callout sits inside the highlighted page, overriding Driver's inline placement. */
+.demo-tour-page-popover.driver-popover {
+  top: var(--demo-tour-top) !important;
+  left: var(--demo-tour-left) !important;
+  right: auto !important;
+  bottom: auto !important;
+}
+
+.demo-tour-page-popover .driver-popover-arrow {
+  display: none;
+}
+
 .demo-tour-popover .driver-popover-title {
   font-size: 16px;
   font-weight: 600;
