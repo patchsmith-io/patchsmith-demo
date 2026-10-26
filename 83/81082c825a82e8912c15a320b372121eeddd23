@@ -1,0 +1,19 @@
+.worktreeinclude
+  s_a476851fbf2840::t_29030757945152 1-2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8381082c825a82e8912c15a320b372121eeddd23",
+  "prompts": {},
+  "sessions": {
+    "s_a476851fbf2840": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a171fb-1449-76c0-bfaa-5176ab6a9ffe",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
