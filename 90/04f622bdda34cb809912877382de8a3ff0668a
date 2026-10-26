@@ -1,0 +1,19 @@
+website/app/globals.css
+  s_164033179d84af::t_953a347913df37 26-27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9004f622bdda34cb809912877382de8a3ff0668a",
+  "prompts": {},
+  "sessions": {
+    "s_164033179d84af": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1768e-960e-7bb3-b81d-41721e2056ce",
+        "model": "unknown"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
