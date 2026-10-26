@@ -29,6 +29,7 @@ import {
   UsersIcon,
 } from "lucide-react";
 import { AppSlotButton } from "@/components/app/app-slot-button";
+import { AppSlotCombobox } from "@/components/app/app-slot-combobox";
 import { AppSlotTabs } from "@/components/app/app-slot-tabs";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
@@ -54,14 +55,6 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Combobox,
-  ComboboxEmpty,
-  ComboboxInput,
-  ComboboxItem,
-  ComboboxList,
-  ComboboxPopup,
-} from "@/components/ui/combobox";
 import { Switch } from "@/components/ui/switch";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
@@ -246,46 +239,7 @@ export const patchsmithClient = createClient({
         </Select>
       </LabeledControl>
     ),
-    Combobox: ({ props }) => (
-      <LabeledControl label={props.label}>
-        <Combobox
-          items={props.options}
-          value={props.options.find((option) => option.value === props.value) ?? null}
-          disabled={props.disabled}
-          autoHighlight
-          isItemEqualToValue={(option, value) => option.value === value.value}
-          filter={(option, query) =>
-            `${option.label} ${option.description ?? ""}`
-              .toLocaleLowerCase()
-              .includes(query.toLocaleLowerCase())
-          }
-          onValueChange={(option) => {
-            if (option !== null) props.onChange?.({ value: option.value });
-          }}
-        >
-          <ComboboxInput
-            aria-label={props.label}
-            placeholder={props.placeholder ?? "Search options…"}
-            triggerProps={{ "aria-label": `Show ${props.label.toLocaleLowerCase()} options` }}
-          />
-          <ComboboxPopup>
-            <ComboboxEmpty>{props.emptyMessage ?? "No results found."}</ComboboxEmpty>
-            <ComboboxList>
-              {(option) => (
-                <ComboboxItem key={option.value} value={option}>
-                  <span className="flex flex-col">
-                    <span>{option.label}</span>
-                    {option.description ? (
-                      <span className="text-xs text-muted-foreground">{option.description}</span>
-                    ) : null}
-                  </span>
-                </ComboboxItem>
-              )}
-            </ComboboxList>
-          </ComboboxPopup>
-        </Combobox>
-      </LabeledControl>
-    ),
+    Combobox: ({ props }) => <AppSlotCombobox {...props} />,
     Checkbox: ({ props }) => (
       <Field className="flex-row items-center">
         <Checkbox

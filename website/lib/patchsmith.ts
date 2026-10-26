@@ -321,6 +321,8 @@ export const contract = defineContract({
       callbacks: { onChange },
     },
     Select: {
+      description:
+        "Choose one value from a short fixed list. For searchable record pickers such as contacts, use Combobox instead; it combines search and selection in one input.",
       fields: z.object({
         label,
         value: z.string().nullable(),
@@ -334,6 +336,8 @@ export const contract = defineContract({
       callbacks: { onChange },
     },
     Combobox: {
+      description:
+        "A single searchable picker: typing filters the supplied option labels and descriptions locally in the host, without tool calls or sandbox round trips. Use for contact and other record selection instead of a separate search Input and Select. Fetch a complete, bounded option list once and pass options as { value: record.id, label: record.name, description: record.email }. value is the selected ID or null; onChange emits { value: id } on selection and { value: null } on clearing. Set loading during the initial fetch to keep the same input in place with a compact spinner; emptyMessage is shown inside the popup only after loading. clearable defaults to true; set required for mandatory selection.",
       fields: z.object({
         label,
         value: z.string().nullable(),
@@ -348,9 +352,12 @@ export const contract = defineContract({
           .max(100),
         placeholder: label.optional(),
         emptyMessage: label.optional(),
+        loading: z.boolean().optional(),
+        clearable: z.boolean().optional(),
+        required: z.boolean().optional(),
         disabled,
       }),
-      callbacks: { onChange },
+      callbacks: { onChange: { input: z.object({ value: z.string().nullable() }) } },
     },
     Checkbox: {
       fields: z.object({ label, checked: z.boolean(), disabled }),
