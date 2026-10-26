@@ -430,6 +430,7 @@ export const contract = defineContract({
     },
     ui: {
       navigate: tool.client().input(z.object({ href: siteHref })),
+      openAppPage: tool.client().input(z.object({ instanceKey: z.string() })),
       openPanel: tool.client(),
       refresh: tool.client(),
       setTheme: tool.client().input(z.object({ theme: z.enum(["light", "dark", "system"]) })),

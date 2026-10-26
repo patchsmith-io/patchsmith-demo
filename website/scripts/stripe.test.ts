@@ -217,7 +217,7 @@ void test("Stripe installation uses the signed workspace scope and reports missi
 
 void test("Stripe analytics has a readable page URL and Button accepts safe external links", () => {
   const page = {
-    app: { id: "stripe-installation", name: "Stripe" },
+    app: { id: "stripe-installation", name: "Stripe", slug: "stripe" },
     key: "overview",
     metadata: { label: "Stripe analytics" },
     data: {},

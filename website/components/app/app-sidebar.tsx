@@ -71,7 +71,7 @@ export function AppSidebar({ name }: { name: string }) {
             <SidebarGroupContent>
               <SidebarMenu>
                 {pages.map((page) => {
-                  const href = appPageHref(page, pages);
+                  const href = appPageHref(page);
                   const active = pathname === href;
                   return (
                     <SidebarMenuItem key={href}>

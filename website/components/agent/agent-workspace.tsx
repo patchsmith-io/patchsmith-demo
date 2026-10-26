@@ -93,7 +93,7 @@ export function AgentWorkspace({ children }: { children: React.ReactNode }) {
   const stripePage = pages?.find(
     (page) => page.app.name?.toLowerCase() === "stripe" && page.key === "overview",
   );
-  const stripeHref = stripePage ? appPageHref(stripePage, pages) : undefined;
+  const stripeHref = stripePage ? appPageHref(stripePage) : undefined;
   const stripeVisible = pathname === stripeHref;
   const introTab =
     introStep === "messages"

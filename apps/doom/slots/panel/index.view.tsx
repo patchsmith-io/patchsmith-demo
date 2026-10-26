@@ -10,7 +10,7 @@ function DoomPanel() {
   async function openGame() {
     setError("");
     try {
-      await tools.ui.navigate({ href: "/apps/doom/doom" });
+      await tools.ui.openAppPage({ instanceKey: "doom" });
     } catch {
       setError("Couldn't open Doom. Please try again.");
     }
