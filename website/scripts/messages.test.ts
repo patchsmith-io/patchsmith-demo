@@ -5,7 +5,7 @@ import {
   encodeMessage,
   readMessages,
   type Activity,
-} from "../../apps/messages/src/messages";
+} from "../../apps/messages/lib/messages";
 
 const activity = (description: string, overrides: Partial<Activity> = {}): Activity => ({
   id: "message-1",

@@ -4,7 +4,7 @@
   "description": "Persistent simulated Stripe billing for Forma CRM contacts.",
   "type": "module",
   "imports": {
-    "#patchsmith": "./src/patchsmith.gen.ts"
+    "#patchsmith": "./patchsmith.gen.ts"
   },
   "scripts": {
     "build": "vp build",

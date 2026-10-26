@@ -15,5 +15,6 @@
     "types": ["node"],
     "verbatimModuleSyntax": true
   },
-  "include": ["src", "patchsmith.config.ts"]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", ".patchsmith"]
 }

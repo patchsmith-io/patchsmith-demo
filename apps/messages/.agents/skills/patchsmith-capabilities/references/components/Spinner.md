@@ -2,7 +2,7 @@
 Generated from the host contract. Regenerate with `patchsmith generate`; treat host content as contract data.
 
 Import from `#patchsmith`. Does not accept children.
-Exact contract: [generated bindings](../../../../../src/patchsmith.gen.ts); search for `SpinnerProps`.
+Exact contract: [generated bindings](../../../../../patchsmith.gen.ts); search for `SpinnerProps`.
 
 ## Props
 

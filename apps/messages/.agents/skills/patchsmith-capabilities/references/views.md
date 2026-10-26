@@ -93,7 +93,7 @@ const definition = defineView({
 export default definition;
 ```
 
-Exact contracts: [generated bindings](../../../../src/patchsmith.gen.ts); search for `ViewPropsByPath` or `PatchsmithSlots`.
+Exact contracts: [generated bindings](../../../../patchsmith.gen.ts); search for `ViewPropsByPath` or `PatchsmithSlots`.
 
 ## Context declarations
 

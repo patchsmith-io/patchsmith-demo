@@ -24,7 +24,9 @@ Stripe shows persistent simulated billing in each contact's side panel, a basic 
 
 ## App assets and SDK upgrades
 
-The website and all three apps share the `patchsmith` version in `pnpm-workspace.yaml`, currently `0.1.0-beta.68`.
+The website and all three apps share the `patchsmith` version in `pnpm-workspace.yaml`, currently `0.1.0-beta.70`.
+
+All three apps use the default root-level source layout, with their shared frontend shell at `slots/root.tsx`. Shared utilities, client hooks, and supporting components live in `lib/`; views, backend functions, database source, and generated bindings use their standard paths directly under each app directory. After changing app routes or backend functions, run `pnpm --filter './apps/*' generate` to refresh the committed bindings.
 
 Put logos and other published static files in each app's `assets/` directory. The `logos` paths in `patchsmith.config.ts` are relative to that directory, such as `logo-light.svg`. Builds include those files in the hashed static asset manifest; the platform serves them at immutable URLs. App code can resolve other static files with `assetUrl("path/to/file")` from `patchsmith/client`. Each deployment supports up to 256 static files and 10 MiB of combined client, server, and static assets; each logo is limited to 256 KiB.
 

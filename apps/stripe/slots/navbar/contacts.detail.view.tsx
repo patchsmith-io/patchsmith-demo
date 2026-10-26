@@ -1,6 +1,6 @@
 import { defineView } from "patchsmith/client";
 import { Button } from "#patchsmith";
-import { STRIPE_DEMO_URL } from "../../billing";
+import { STRIPE_DEMO_URL } from "../../lib/billing";
 
 export default defineView({ view: "/contacts/detail", component: StripeLink });
 

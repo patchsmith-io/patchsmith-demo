@@ -4,7 +4,7 @@
   "description": "A demo inbox for messaging Forma CRM contacts through Patchsmith's panel slot.",
   "type": "module",
   "imports": {
-    "#patchsmith": "./src/patchsmith.gen.ts"
+    "#patchsmith": "./patchsmith.gen.ts"
   },
   "scripts": {
     "build": "vp build",

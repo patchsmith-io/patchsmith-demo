@@ -10,9 +10,9 @@ import { join } from "node:path";
 import { drizzle } from "drizzle-orm/node-sqlite";
 import { defineContract } from "patchsmith";
 import { createFileServer, createServer, type Identity } from "patchsmith/server";
-import { database } from "../../apps/stripe/src/db";
-import billingRouter from "../../apps/stripe/src/functions/billing.router";
-import { seedBilling, summarize, type Contact, type Customer } from "../../apps/stripe/src/billing";
+import { database } from "../../apps/stripe/db";
+import billingRouter from "../../apps/stripe/functions/billing.router";
+import { seedBilling, summarize, type Contact, type Customer } from "../../apps/stripe/lib/billing";
 import { installStripe } from "../lib/install-stripe";
 import { appPageHref, findAppPage } from "../lib/app-pages";
 import { contract } from "../lib/patchsmith";
@@ -33,7 +33,7 @@ const contact = (id: string): Contact => ({
   email: `${id}@example.com`,
   company: "Acme",
 });
-const migrations = new URL("../../apps/stripe/src/db/migrations/", import.meta.url);
+const migrations = new URL("../../apps/stripe/db/migrations/", import.meta.url);
 const migration = readFileSync(
   new URL(`${readdirSync(migrations)[0]}/migration.sql`, migrations),
   "utf8",
@@ -55,7 +55,7 @@ function openDatabase(path = ":memory:", migrate = true) {
     syncFromHost: async (contacts: Contact[]) => {
       const app = createFileServer([
         {
-          filename: "src/functions/billing.router.ts",
+          filename: "functions/billing.router.ts",
           path: ["billing"],
           functions: billingRouter,
         },

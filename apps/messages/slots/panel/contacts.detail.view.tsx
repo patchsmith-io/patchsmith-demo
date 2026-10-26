@@ -22,8 +22,8 @@ import {
   examples,
   MAX_MESSAGE_LENGTH,
   type Channel,
-} from "../../messages";
-import { useMessages } from "../../use-messages";
+} from "../../lib/messages";
+import { useMessages } from "../../lib/use-messages";
 
 const view = defineView({ view: "/contacts/detail", component: ContactMessages });
 type Contact = ViewProps<"/contacts/detail">["context"]["contact"];

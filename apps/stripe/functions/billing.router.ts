@@ -3,7 +3,7 @@ import { asc, eq } from "patchsmith/db";
 import { z } from "zod";
 import { fn } from "../db";
 import { customers } from "../db/schema";
-import { billingSchema, contactSchema, seedBilling } from "../billing";
+import { billingSchema, contactSchema, seedBilling } from "../lib/billing";
 
 // Internal writes accept only contacts fetched by the backend from the scoped host tool.
 const reconcile = fn.mutation

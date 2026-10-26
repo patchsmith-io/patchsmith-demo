@@ -4,7 +4,7 @@
   "description": "Doom shareware in a full-page Patchsmith canvas slot.",
   "type": "module",
   "imports": {
-    "#patchsmith": "./src/patchsmith.gen.ts"
+    "#patchsmith": "./patchsmith.gen.ts"
   },
   "scripts": {
     "build": "vp build",

@@ -2,7 +2,7 @@ import { defineView, experimental_useCanvasSurface as useCanvasSurface } from "p
 import { useState } from "preact/hooks";
 import { z } from "zod";
 import { Alert, Box, Button, Canvas, Flex, Text } from "#patchsmith";
-import { createDoom, type DoomEngine } from "../../doom";
+import { createDoom, type DoomEngine } from "../../lib/doom";
 
 const view = defineView({
   view: "/",

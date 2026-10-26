@@ -19,9 +19,9 @@ pnpm --filter @demo/doom test
 pnpm --filter @demo/doom run deploy --no-interactive
 ```
 
-The committed generated bindings include `Canvas`. Backend functions are enabled with `server: {}` in `patchsmith.config.ts`; the CLI discovers routers under `src/functions/**/*.router.ts` and creates the private server entry automatically. `src/functions/page.router.ts` exports a router whose `get` query uses `fn.query.input(...).handler(...)` to expose the installed page URL to the panel as `api.page.get`.
+The committed generated bindings include `Canvas`. App source lives directly under this directory, with the shared shell at `slots/root.tsx`. The CLI discovers backend routers under `functions/**/*.router.ts` and creates the private server entry automatically. Doom currently has no backend functions; its panel links to the fixed `/apps/doom/doom` page URL.
 
-Run generation after adding or moving function modules, and commit both `src/patchsmith.gen.ts` and the type-only `src/patchsmith.functions.gen.ts` registry. Generate against an upgraded host (the deployed host must include this branch's canvas contract):
+Run generation after adding or moving function modules, and commit both `patchsmith.gen.ts` and the type-only `patchsmith.functions.gen.ts` registry. Generate against an upgraded host (the deployed host must include this branch's canvas contract):
 
 ```sh
 pnpm --filter @demo/doom generate

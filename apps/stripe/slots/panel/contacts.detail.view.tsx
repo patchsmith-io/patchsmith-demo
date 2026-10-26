@@ -1,8 +1,8 @@
 import { defineView } from "patchsmith/client";
 import { Badge, Card, Empty, Button, Flex, Grid, Heading, Separator, Text } from "#patchsmith";
-import { useBilling } from "../../use-billing";
-import { BillingStatus, LoadState, Stat } from "../../components";
-import { money, shortDate, STRIPE_DEMO_URL } from "../../billing";
+import { useBilling } from "../../lib/use-billing";
+import { BillingStatus, LoadState, Stat } from "../../lib/components";
+import { money, shortDate, STRIPE_DEMO_URL } from "../../lib/billing";
 
 const view = defineView({ view: "/contacts/detail", component: ContactBilling });
 

@@ -12,4 +12,4 @@ export const run = async (input: Parameters<typeof tools.tasks.create>[0]) =>
   await tools.tasks.create(input);
 ```
 
-Exact contracts: [generated bindings](../../../../../src/patchsmith.gen.ts); search for the tool name in PatchsmithTools or PatchsmithBackendTools.
+Exact contracts: [generated bindings](../../../../../patchsmith.gen.ts); search for the tool name in PatchsmithTools or PatchsmithBackendTools.
