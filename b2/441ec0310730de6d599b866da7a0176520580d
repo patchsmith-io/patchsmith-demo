@@ -1,0 +1,187 @@
+README.md
+  s_d5fa7ba1af39c9::t_d41c973be32f57 29
+apps/doom/README.md
+  s_d5fa7ba1af39c9::t_a796d69dbeebc3 22,24
+apps/doom/package.json
+  s_d5fa7ba1af39c9::t_4bc7fdaf409415 7
+apps/doom/tsconfig.json
+  s_d5fa7ba1af39c9::t_f7697270e18f2f 18-19
+apps/doom/vite.config.ts
+  s_d5fa7ba1af39c9::t_87689db23abc2c 7,10
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Alert.md
+  s_d5fa7ba1af39c9::t_942ce9074c1612 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/AreaChart.md
+  s_d5fa7ba1af39c9::t_9e71de99fd9366 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Avatar.md
+  s_d5fa7ba1af39c9::t_0cffcf539372a1 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Badge.md
+  s_d5fa7ba1af39c9::t_9e39c8d3ed5663 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/BarChart.md
+  s_d5fa7ba1af39c9::t_ad6f6f9b2b8db7 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Box.md
+  s_d5fa7ba1af39c9::t_b3ff3b20e9aef0 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Button.md
+  s_d5fa7ba1af39c9::t_6bcfa454d209a1 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Canvas.md
+  s_d5fa7ba1af39c9::t_1d1ab2ed85f04d 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Card.md
+  s_d5fa7ba1af39c9::t_fc53bdd42f33d0 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Checkbox.md
+  s_d5fa7ba1af39c9::t_00745270fcf449 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Combobox.md
+  s_d5fa7ba1af39c9::t_d1ace9f5ecb70b 7
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Dialog.md
+  s_d5fa7ba1af39c9::t_ba17da81d06bce 7
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/DialogActions.md
+  s_d5fa7ba1af39c9::t_ecc3be1810ae9b 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Empty.md
+  s_d5fa7ba1af39c9::t_9491f55236402a 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Fieldset.md
+  s_d5fa7ba1af39c9::t_cdb5e46ba9d933 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Flex.md
+  s_d5fa7ba1af39c9::t_bd97bd55e09c05 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Form.md
+  s_d5fa7ba1af39c9::t_0e70b4cc07da9d 7
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Grid.md
+  s_d5fa7ba1af39c9::t_077b772a870e3a 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Heading.md
+  s_d5fa7ba1af39c9::t_823fd60cf1a5cd 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Icon.md
+  s_d5fa7ba1af39c9::t_17d4ea0e311348 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Inline.md
+  s_d5fa7ba1af39c9::t_3944975cf767b0 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Input.md
+  s_d5fa7ba1af39c9::t_70ad6e261e956e 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Pressable.md
+  s_d5fa7ba1af39c9::t_cf45b909be15de 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Progress.md
+  s_d5fa7ba1af39c9::t_16b8e4a7754b6f 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Select.md
+  s_d5fa7ba1af39c9::t_4ff6c7981aecb6 7
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Separator.md
+  s_d5fa7ba1af39c9::t_d98d99dac2edb2 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Skeleton.md
+  s_d5fa7ba1af39c9::t_80c3f43ffe7892 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Spinner.md
+  s_d5fa7ba1af39c9::t_64ef5086914825 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Switch.md
+  s_d5fa7ba1af39c9::t_09509e8c54bfa4 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Table.md
+  s_d5fa7ba1af39c9::t_d14369b1e8c3dd 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/TableBody.md
+  s_d5fa7ba1af39c9::t_37d88876ca105c 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/TableCell.md
+  s_d5fa7ba1af39c9::t_e3fd5603b56d34 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/TableHead.md
+  s_d5fa7ba1af39c9::t_6b9573636aa876 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/TableHeader.md
+  s_d5fa7ba1af39c9::t_0b79999f402571 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/TableRow.md
+  s_d5fa7ba1af39c9::t_8d6d8587d42a6e 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Tabs.md
+  s_d5fa7ba1af39c9::t_826a8f82dfcb4d 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Text.md
+  s_d5fa7ba1af39c9::t_d6269523d05646 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Textarea.md
+  s_d5fa7ba1af39c9::t_4a48b8fbdb8367 5
+apps/messages/.agents/skills/patchsmith-capabilities/references/index.md
+  s_d5fa7ba1af39c9::t_e3c99222fa69ce 9
+apps/messages/.agents/skills/patchsmith-capabilities/references/styling.md
+  s_d5fa7ba1af39c9::t_efbd21e6dc0062 4
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools.md
+  s_d5fa7ba1af39c9::t_151865f830b932 30
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/activities-addNote-21e90b1799d5cc2a.md
+  s_d5fa7ba1af39c9::t_6b676572d277e9 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/activities-list-d1f8b54e71f12c73.md
+  s_d5fa7ba1af39c9::t_ae35ecd49b6c25 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/contacts-create-54d70d6a96d51575.md
+  s_d5fa7ba1af39c9::t_09a9582dfbe3b1 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/contacts-delete-ec2b3a05ac5e6260.md
+  s_d5fa7ba1af39c9::t_4274d8a4fc8de5 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/contacts-get-c3ce80b0e7ff09fb.md
+  s_d5fa7ba1af39c9::t_e8ffc1414e27e3 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/contacts-list-cd340b43b15f40c9.md
+  s_d5fa7ba1af39c9::t_f388c9649c0c6f 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/contacts-update-f42624cd620c0238.md
+  s_d5fa7ba1af39c9::t_7d569a4af29b7b 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/deals-create-5e296134f0a1a01a.md
+  s_d5fa7ba1af39c9::t_8c8f22b1602580 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/deals-delete-b6a4adb812052d2c.md
+  s_d5fa7ba1af39c9::t_df7088a39f9ea8 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/deals-list-b55e5e2bc57c48cd.md
+  s_d5fa7ba1af39c9::t_f7c0e2ddf0415d 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/deals-move-6c42d248f2b3d8ee.md
+  s_d5fa7ba1af39c9::t_e8a62d4648674d 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/deals-update-9e9015c43afac4a9.md
+  s_d5fa7ba1af39c9::t_5673cf9de96de2 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/tasks-create-7c0611f5eefc5ff2.md
+  s_d5fa7ba1af39c9::t_fe2ebfaa8a5a76 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/tasks-delete-424d7efbad187838.md
+  s_d5fa7ba1af39c9::t_e7217624b2cd18 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/tasks-list-e75ee53a7203a4fa.md
+  s_d5fa7ba1af39c9::t_c7fce2a8ecd5c6 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/tasks-setCompleted-e9f392c1e6fbf8bb.md
+  s_d5fa7ba1af39c9::t_84ab47cc4688a8 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/tasks-update-598206543e93b918.md
+  s_d5fa7ba1af39c9::t_da4b1704c67f6c 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/ui-navigate-a49b89e513912fe8.md
+  s_d5fa7ba1af39c9::t_16cff06028b0dc 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/ui-notify-aae11b76263faeb6.md
+  s_d5fa7ba1af39c9::t_25f1608278a12e 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/ui-openPanel-c5c73735203c4cb1.md
+  s_d5fa7ba1af39c9::t_811ebed273ebac 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/ui-refresh-d181cb5e1b4fd59f.md
+  s_d5fa7ba1af39c9::t_426359707c2a74 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/ui-setTheme-7374012530431d11.md
+  s_d5fa7ba1af39c9::t_cc839809da7d85 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/tools/workspace-get-4c4d5a8af3f5e90f.md
+  s_d5fa7ba1af39c9::t_b07ac2a42ee665 15
+apps/messages/.agents/skills/patchsmith-capabilities/references/views.md
+  s_d5fa7ba1af39c9::t_535c0b6813003d 96
+apps/messages/README.md
+  s_d5fa7ba1af39c9::t_3f522e17a51624 27
+apps/messages/package.json
+  s_d5fa7ba1af39c9::t_e7df4355d8f1ee 7
+apps/messages/tsconfig.json
+  s_d5fa7ba1af39c9::t_b61f5d7470dc2f 18-19
+apps/messages/vite.config.ts
+  s_973dd86374e97d::t_d6b433f6866735 7,10
+apps/stripe/package.json
+  s_d5fa7ba1af39c9::t_55bcb615431f6f 7
+apps/stripe/tsconfig.json
+  s_d5fa7ba1af39c9::t_2f3c3130cff20d 18-19
+apps/stripe/vite.config.ts
+  s_d5fa7ba1af39c9::t_d0a49f4d12ea6f 7,10
+vite.config.ts
+  s_973dd86374e97d::t_bbd4649c9aa469 9-10,13-14,17-18,37-38,41-42,45-46
+website/scripts/messages.test.ts
+  s_d5fa7ba1af39c9::t_3eb658c5900ea2 3
+website/scripts/patchsmith-forms.test.ts
+  s_d5fa7ba1af39c9::t_b759b15f0b626f 5-10
+website/scripts/stripe.test.ts
+  s_d5fa7ba1af39c9::t_f0cfe132a87b24 13-15,36,58
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b2441ec0310730de6d599b866da7a0176520580d",
+  "prompts": {},
+  "sessions": {
+    "s_973dd86374e97d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a176b0-87a7-7812-ab6f-cc0d74610dac",
+        "model": "unknown"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    },
+    "s_d5fa7ba1af39c9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a176af-5244-7a60-a73e-741b2526b9e0",
+        "model": "unknown"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
