@@ -142,6 +142,8 @@ to supply live context to the SDK renderers.
 
 `lib/patchsmith.ts` is the browser-safe `defineContract` shared by the host server and client. It declares the `workspace` scope, workspace/page context at `/`, plus a dedicated view for every CRM page. The `navbar` slot renders app actions in each page header. Apps call `ui.openPanel` to open their own installation's panel tab. Panel views render as tabs beside the agent. The `navbar` and `panel` slots support the page views below; apps can implement a specific view or fall back to `/`. The `page` slot uses only the root view `/` and allows multiple instances per app: each instance appears under **App pages** in the sidebar and mobile navigation. The entire group is hidden when no page instances are available.
 
+Use the `panel` slot (sidepanel) by default for all app UI. Reserve the `page` slot for content that needs a full screen or when the user explicitly requests a page.
+
 Page contexts are registered by the page displaying the data and update as its query data or local controls change:
 
 - `/overview` (the home route `/`): contacts, deals, follow-ups, recent activity, revenue, open pipeline value, and relationship/task totals.
