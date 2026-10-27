@@ -1,0 +1,30 @@
+website/README.md
+  s_8a316f14572b4b::t_b2fee18533e33a 161
+website/package.json
+  s_8a316f14572b4b::t_3edef15849d67d 50
+pnpm-workspace.yaml
+  s_8a316f14572b4b::t_3edef15849d67d 75-77
+  s_8a316f14572b4b::t_78465323a839ad 24
+website/routers/contacts.ts
+  s_8a316f14572b4b::t_b2fee18533e33a 3,160-161
+website/scripts/contact-created.test.ts
+  s_8a316f14572b4b::t_540eab045a146c 16-26,101,122-125,148-149,188-189,204,208,212,229,231-234
+pnpm-lock.yaml
+  s_8a316f14572b4b::t_f717ce84ed6471 215-217,454-456,3221-3223,3259-3270,3330-3333,9056-9060,9139-9144,9290-9295
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6a95d9d7ede5e8b06911412c21ba0b00aab4f956",
+  "prompts": {},
+  "sessions": {
+    "s_8a316f14572b4b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a17cb4-3bac-75e3-9249-5dc426166517",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
