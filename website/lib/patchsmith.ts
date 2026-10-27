@@ -303,7 +303,9 @@ export const contract = defineContract({
         label,
         value: text,
         placeholder: label.optional(),
-        type: z.enum(["text", "email", "number", "date", "search", "url", "tel"]).optional(),
+        type: z
+          .enum(["text", "email", "password", "number", "date", "search", "url", "tel"])
+          .optional(),
         disabled,
         required: z.boolean().optional(),
       }),

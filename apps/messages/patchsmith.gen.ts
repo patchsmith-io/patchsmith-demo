@@ -1207,7 +1207,7 @@ export interface InputProps {
   label: string;
   value: string;
   placeholder?: string;
-  type?: "text" | "email" | "number" | "date" | "search" | "url" | "tel";
+  type?: "text" | "email" | "password" | "number" | "date" | "search" | "url" | "tel";
   disabled?: boolean;
   required?: boolean;
   onChange?: (input: {
