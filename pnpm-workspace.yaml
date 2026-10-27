@@ -21,6 +21,7 @@ catalog:
   "@tanstack/react-query": ^5.104.4
   "@types/node": ^26.6.5
   "@types/pg": ^8.23.1
+  "@vercel/functions": ^3.10.4
   ai: ^7.0.143
   better-auth: ^1.7.10
   botid: ^1.5.11
@@ -71,3 +72,6 @@ minimumReleaseAgeExclude:
   - "@patchsmith/*"
   - patchsmith
   - lucide-react@1.60.0
+  - "@vercel/cli-config@0.3.4"
+  - "@vercel/functions@3.10.4"
+  - "@vercel/oidc@4.0.4"

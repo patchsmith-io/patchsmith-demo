@@ -158,7 +158,7 @@ Supply page instances with stable keys and `metadata: { label: "Reports" }` to n
 
 `PATCHSMITH_PROJECT_KEY` is required in the server environment to connect your Patchsmith project.
 
-The `contactCreated` hook receives `{ contact: { id, name, email, company, role, status } }` after a new contact and its activity entry commit. Browser, agent, and app-tool creation all use the same procedure. Discovery and invocation use the authorized workspace scope and the creator's subject ID from the session or verified app capability. Each supporting installation is invoked once; failures are logged without failing the saved contact, and there are no automatic retries. Seeded demo contacts do not emit hooks.
+The `contactCreated` hook receives `{ contact: { id, name, email, company, role, status } }` after a new contact and its activity entry commit. Vercel's `waitUntil` keeps delivery running in the background without delaying the creation response. Browser, agent, and app-tool creation all use the same procedure. Discovery and invocation use the authorized workspace scope and the creator's subject ID from the session or verified app capability. Each supporting installation is invoked once; failures are logged without failing the saved contact, and there are no automatic retries. Seeded demo contacts do not emit hooks.
 
 Apps can implement `hooks/contactCreated.hook.ts` with `defineHook({ hook: "contactCreated", handler: async ({ input }) => { /* use input.contact */ } })` from `patchsmith/server`; no output is required. Regenerate host bindings against the updated host with `patchsmith generate`, then rebuild and publish the app so its deployment advertises the hook. Older deployments are skipped until updated.
 

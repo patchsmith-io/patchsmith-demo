@@ -1,5 +1,6 @@
 import { aiSdkTool } from "@orpc/ai-sdk";
 import { ORPCError } from "@orpc/server";
+import { waitUntil } from "@vercel/functions";
 import { and, asc, desc, eq, ilike, or } from "drizzle-orm";
 import { db } from "../lib/drizzle";
 import { notifyContactCreated } from "../lib/patchsmith-server";
@@ -156,8 +157,8 @@ export const createContact = protectedProcedure
       return id;
     });
     const contact = { ...input, id };
-    // Notify only after commit. App failures must not make a saved contact look unsaved.
-    await notifyContactCreated(tenantId, subjectId, { contact });
+    // Keep hook delivery alive after the response, without delaying contact creation.
+    waitUntil(notifyContactCreated(tenantId, subjectId, { contact }));
     return { success: true as const, contact, href: `/contacts/${id}` };
   });
 

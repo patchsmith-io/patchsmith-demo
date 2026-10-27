@@ -13,6 +13,17 @@ import type { RouterClient } from "@orpc/server";
 
 void test("contact-created hooks retain the creator across browser, agent and app tools", async (t) => {
   const originalFetch = globalThis.fetch;
+  const contextSymbol = Symbol.for("@vercel/request-context");
+  const globals = globalThis as unknown as Record<symbol, unknown>;
+  const originalContext = globals[contextSymbol];
+  const background: Promise<unknown>[] = [];
+  globals[contextSymbol] = {
+    get: () => ({ waitUntil: (work: Promise<unknown>) => background.push(work) }),
+  };
+  const drainBackground = async () => {
+    await Promise.all(background.splice(0));
+  };
+  const hookGate = Promise.withResolvers<void>();
   const users: string[] = [];
   const keyPair = await crypto.subtle.generateKey({ name: "ECDSA", namedCurve: "P-256" }, true, [
     "sign",
@@ -87,6 +98,7 @@ void test("contact-created hooks retain the creator across browser, agent and ap
           .from(contacts)
           .where(eq(contacts.id, options.input.contact.id));
         invocations.push({ options, savedWorkspaceId: saved?.tenantId });
+        await hookGate.promise;
         if (options.appId === "failing-app") throw new Error("App unavailable");
       },
     );
@@ -107,6 +119,10 @@ void test("contact-created hooks retain the creator across browser, agent and ap
       }),
     );
     const created = await browser.contacts.create(input);
+    assert.equal(background.length, 1, "Hook delivery must be registered with Vercel waitUntil");
+    // The response returns even while hook delivery cannot finish.
+    hookGate.resolve();
+    await drainBackground();
     assert.deepEqual(discovery.at(-1), [
       { name: "workspace", value: { workspaceId: first.workspaceId } },
     ]);
@@ -129,6 +145,8 @@ void test("contact-created hooks retain the creator across browser, agent and ap
 
     const tools = createCrmTools(second.workspaceId, second.subjectId);
     await tools.createContact.execute!(input, { toolCallId: "create", messages: [], context: {} });
+    assert.equal(background.length, 1);
+    await drainBackground();
     assertDelivery(2, second.subjectId, second.workspaceId, invocations[2].options.input.contact);
 
     // The signed app subject can differ from the workspace owner; never substitute that owner.
@@ -167,6 +185,8 @@ void test("contact-created hooks retain the creator across browser, agent and ap
       { authenticate: async () => null },
     );
     assert.equal(appResponse.status, 200, await appResponse.clone().text());
+    assert.equal(background.length, 1);
+    await drainBackground();
     assertDelivery(
       4,
       second.subjectId,
@@ -181,12 +201,15 @@ void test("contact-created hooks retain the creator across browser, agent and ap
     );
     await assert.rejects(browser.contacts.create({ ...input, name: "" }), { code: "BAD_REQUEST" });
     assert.equal(discovery.length, beforeRejected);
+    assert.equal(background.length, 0, "Rejected creations must not schedule background work");
 
     supportsHook = false;
     await browser.contacts.create(input);
+    await drainBackground();
     assert.equal(invocations.length, 6, "Apps without the hook are skipped");
     discoveryFails = true;
     assert.equal((await browser.contacts.create(input)).success, true);
+    await drainBackground();
     assert.equal(invocations.length, 6, "Discovery failure does not fail contact creation");
     discoveryFails = false;
     const [{ total }] = await db
@@ -203,7 +226,12 @@ void test("contact-created hooks retain the creator across browser, agent and ap
     const beforeFull = discovery.length;
     await assert.rejects(browser.contacts.create(input), { code: "CONFLICT" });
     assert.equal(discovery.length, beforeFull, "A rejected transaction must not emit a hook");
+    assert.equal(background.length, 0);
   } finally {
+    hookGate.resolve();
+    await drainBackground();
+    if (originalContext === undefined) delete globals[contextSymbol];
+    else globals[contextSymbol] = originalContext;
     globalThis.fetch = originalFetch;
     for (const id of users) await db.delete(user).where(eq(user.id, id));
     await pool.end();

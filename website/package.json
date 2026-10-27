@@ -47,6 +47,7 @@
     "@streamdown/math": "catalog:",
     "@streamdown/mermaid": "catalog:",
     "@tanstack/react-query": "catalog:",
+    "@vercel/functions": "catalog:",
     "ai": "catalog:",
     "better-auth": "catalog:",
     "botid": "catalog:",
