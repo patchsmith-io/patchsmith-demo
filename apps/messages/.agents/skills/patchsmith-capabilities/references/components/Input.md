@@ -11,7 +11,7 @@ Exact contract: [generated bindings](../../../../../patchsmith.gen.ts); search f
 | label | yes | string |
 | value | yes | string |
 | placeholder | no | string |
-| type | no | "text", "email", "number", "date", "search", "url", "tel" |
+| type | no | "text", "email", "password", "number", "date", "search", "url", "tel" |
 | disabled | no | boolean |
 | required | no | boolean |
 
