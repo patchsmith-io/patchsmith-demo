@@ -1,0 +1,45 @@
+website/routers/deals.ts
+  s_82a18760f694f8::t_e920cc714200b5 6,96-98
+website/lib/patchsmith.ts
+  s_82a18760f694f8::t_e920cc714200b5 1,192-200
+website/routers/contacts.ts
+  s_82a18760f694f8::t_e920cc714200b5 6,156-158
+website/routers/tasks.ts
+  s_82a18760f694f8::t_e920cc714200b5 3,6,131-133,136-138,140-141
+website/README.md
+  s_82a18760f694f8::t_d228d56f602624 243-282,286
+  s_82a18760f694f8::t_1eed119bb46249 283-285
+website/lib/workspace-hooks.ts
+  s_82a18760f694f8::t_e920cc714200b5 1-38
+website/scripts/test-workspace-hooks.ts
+  s_82a18760f694f8::t_8ce39ea2f4bdc1 1-24,29-63,72-77,83-91,94-97,102,111-117,126-128,137-138,142-151
+  s_82a18760f694f8::t_fda9706ed3fcdc 25-28,64-71,78-82,92-93,98-101,103-110,118-125,129-136,139-141
+website/scripts/workspace-hooks.test.ts
+  s_82a18760f694f8::t_9ecc2bf5413311 37,44
+  s_82a18760f694f8::t_d228d56f602624 1-36,38-43,45-59,61-139
+  s_82a18760f694f8::t_984edabbe169d7 60
+website/lib/patchsmith-server.ts
+  s_82a18760f694f8::t_e920cc714200b5 12,99-139
+  s_82a18760f694f8::t_c948eb1bedc77a 140
+website/package.json
+  s_82a18760f694f8::t_8ce39ea2f4bdc1 14
+  s_82a18760f694f8::t_d228d56f602624 13
+package.json
+  s_82a18760f694f8::t_0bb9775d68efe3 14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "01c39a6779c53208258902c06865f1e5ff03d7a8",
+  "prompts": {},
+  "sessions": {
+    "s_82a18760f694f8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a17c89-7e72-7ea0-aebd-33cfb7cee41e",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
