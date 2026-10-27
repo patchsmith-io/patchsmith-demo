@@ -240,6 +240,50 @@ Use the returned `contact.id` in `tasks.create` with `{ "title": "Follow up", "d
 
 Verify the setup with `pnpm check`, `pnpm --filter website typecheck`, and `pnpm build`. Hosted app discovery, signed capability transport and sandbox rendering require a configured Patchsmith project.
 
+## Workspace event hooks
+
+The contract in `lib/patchsmith.ts` declares `contacts.created` (`{ contact }`),
+`deals.created` (`{ deal }`), and `tasks.completed` (`{ task }`). Payloads use the
+corresponding mutation's public record shape. The shared domain procedures emit
+them after successful database writes, so browser, agent, and installed-app writes
+all trigger the same hooks. Seed data and rejected writes do not emit events.
+Completing an already completed task does not emit again; reopening and completing
+it does.
+
+`lib/patchsmith-server.ts` discovers and invokes only subscribed installations in
+the originating workspace, using the `service:crm-events` service principal. HTTP
+RPC requests schedule delivery with Next's `after`; direct server/app-tool calls
+await delivery. Delivery is best effort, bounded to 15 seconds, and has no retries
+or durable queue. A failed installation does not block other subscribers or undo
+the CRM write. Hosts without `PATCHSMITH_PROJECT_KEY` skip delivery.
+
+Apps regenerate their host bindings and implement any subset of the hooks in
+files such as `hooks/contacts/created.hook.ts`:
+
+```ts
+import { defineHook } from "patchsmith/server";
+
+export default defineHook({
+  hook: "contacts.created",
+  handler: async ({ input, actions }) => {
+    await actions.notifications.contactCreated(input);
+  },
+});
+```
+
+Here `notifications.contactCreated` is an action implemented by the app. For a
+WiZ integration, the app's configuration UI accepts the IFTTT webhook URL and
+saves it in the installation database. The app action loads that configuration
+and calls the URL from its backend when the hook fires, supplying its desired
+colour as `value1`. An unconfigured app should do nothing. Webhook URLs and colour
+rules belong to the app, not to the host contract or browser-facing view context.
+Rebuild and publish the app after adding hooks so its deployment advertises them.
+
+Run `pnpm --filter website test:hooks` for payload validation, workspace-scoped
+fan-out, deferred delivery, and failure handling. Run
+`pnpm --filter website test:hooks:db` against the local test database to verify
+post-commit delivery, rejected writes, and concurrent task completion.
+
 ## Anonymous setup
 
 Better Auth stores the account/session in Postgres and uses its signed HttpOnly session cookie. The session lasts 30 days with refresh on active use. No signup or sign-in forms are exposed. Clearing cookies creates a fresh workspace on the next visit.

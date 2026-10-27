@@ -11,7 +11,7 @@
     "lint": "vp lint",
     "format": "vp fmt",
     "build": "pnpm --filter website build",
-    "test": "pnpm --filter @demo/doom test && pnpm --filter website test:messages && pnpm --filter website test:stripe && pnpm --filter website test:app-pages && pnpm --filter website test:patchsmith-handler && pnpm --filter website test:db-config && pnpm --filter website test:db && pnpm --filter website test:setup-protection && pnpm --filter website test:agent && pnpm --filter website test:agent-rpc && pnpm --filter website test:agent-chats && pnpm --filter website test:rpc"
+    "test": "pnpm --filter @demo/doom test && pnpm --filter website test:messages && pnpm --filter website test:stripe && pnpm --filter website test:app-pages && pnpm --filter website test:hooks && pnpm --filter website test:hooks:db && pnpm --filter website test:patchsmith-handler && pnpm --filter website test:db-config && pnpm --filter website test:db && pnpm --filter website test:setup-protection && pnpm --filter website test:agent && pnpm --filter website test:agent-rpc && pnpm --filter website test:agent-chats && pnpm --filter website test:rpc"
   },
   "devDependencies": {
     "vercel": "catalog:",

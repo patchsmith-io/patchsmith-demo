@@ -3,6 +3,7 @@ import { ORPCError } from "@orpc/server";
 import { and, asc, desc, eq, ilike, or } from "drizzle-orm";
 import { db } from "../lib/drizzle";
 import { contacts, deals } from "../lib/schema";
+import { emitWorkspaceHook } from "../lib/workspace-hooks";
 import { protectedProcedure } from "./base";
 import { schemas } from "./schemas";
 import { checkContact, checkLimit, lockTenant, logActivity, substringPattern } from "./shared";
@@ -92,7 +93,9 @@ export const createDeal = protectedProcedure
       await logActivity(tx, tenantId, "deal", "Deal created", record.title, record.contactId);
       return id;
     });
-    return { success: true as const, deal: { ...record, id }, href: "/pipeline" };
+    const deal = { ...record, id };
+    await emitWorkspaceHook(context, { name: "deals.created", input: { deal } });
+    return { success: true as const, deal, href: "/pipeline" };
   });
 
 export const updateDeal = protectedProcedure

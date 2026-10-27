@@ -1,8 +1,9 @@
 import { aiSdkTool } from "@orpc/ai-sdk";
 import { ORPCError } from "@orpc/server";
-import { and, asc, eq, ilike } from "drizzle-orm";
+import { and, asc, eq, ilike, ne } from "drizzle-orm";
 import { db } from "../lib/drizzle";
 import { tasks } from "../lib/schema";
+import { emitWorkspaceHook } from "../lib/workspace-hooks";
 import { protectedProcedure } from "./base";
 import { schemas } from "./schemas";
 import { checkContact, checkLimit, lockTenant, logActivity, substringPattern } from "./shared";
@@ -127,11 +128,16 @@ export const setTaskCompleted = protectedProcedure
   .input(schemas.tasks.setCompleted.input)
   .output(schemas.tasks.setCompleted.output)
   .handler(async ({ input: { id, completed }, context }) => {
-    const [task] = await db
+    const fields = { id: tasks.id, title: tasks.title, completed: tasks.completed };
+    const condition = and(eq(tasks.id, id), eq(tasks.tenantId, context.tenant.id));
+    const [changed] = await db
       .update(tasks)
       .set({ completed })
-      .where(and(eq(tasks.id, id), eq(tasks.tenantId, context.tenant.id)))
-      .returning({ id: tasks.id, title: tasks.title, completed: tasks.completed });
+      .where(and(condition, ne(tasks.completed, completed)))
+      .returning(fields);
+    const task = changed ?? (await db.select(fields).from(tasks).where(condition))[0];
     if (!task) throw new ORPCError("NOT_FOUND", { message: "Task not found." });
+    if (changed?.completed)
+      await emitWorkspaceHook(context, { name: "tasks.completed", input: { task: changed } });
     return { success: true as const, task, href: "/tasks" };
   });
