@@ -41,8 +41,8 @@ async function main() {
       tenants.push(await provisionForUser(payload.user.id));
     }
     const [tenant, foreignTenant] = tenants;
-    const tools = createCrmTools(tenant.id);
-    const foreignTools = createCrmTools(foreignTenant.id);
+    const tools = createCrmTools(tenant.id, users[0]);
+    const foreignTools = createCrmTools(foreignTenant.id, users[1]);
     const ownDeals = await run(tools.listDeals.execute!({}, options));
     const foreignDeals = await run(foreignTools.listDeals.execute!({}, options));
     assert.equal(ownDeals.count, 18);
@@ -247,7 +247,12 @@ async function main() {
     const response = await createAgentUIStreamResponse({
       agent: createCrmAgent(
         tenant,
-        { page: "/pipeline", date: "2026-10-11", timeZone: "Australia/Melbourne" },
+        {
+          page: "/pipeline",
+          date: "2026-10-11",
+          timeZone: "Australia/Melbourne",
+          subjectId: users[0],
+        },
         model,
       ),
       uiMessages: turn.messages,
@@ -310,7 +315,7 @@ async function main() {
     const boundedResponse = await createAgentUIStreamResponse({
       agent: createCrmAgent(
         tenant,
-        { page: "/pipeline", date: "2026-10-11", timeZone: "UTC" },
+        { page: "/pipeline", date: "2026-10-11", timeZone: "UTC", subjectId: users[0] },
         boundedModel,
       ),
       uiMessages: disconnectedTurn.messages,

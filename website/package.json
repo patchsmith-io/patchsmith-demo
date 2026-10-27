@@ -10,6 +10,7 @@
     "test:stripe": "tsx --test scripts/stripe.test.ts",
     "test:app-pages": "tsx --test scripts/app-pages.test.ts scripts/patchsmith-charts.test.ts scripts/patchsmith-forms.test.ts scripts/patchsmith-origin.test.ts scripts/patchsmith-queries.test.ts",
     "test:patchsmith-handler": "tsx --test scripts/patchsmith-handler.test.ts",
+    "test:contact-created": "tsx --test scripts/contact-created.test.ts",
     "start": "next start",
     "lint": "vp lint .",
     "format": "vp fmt .",

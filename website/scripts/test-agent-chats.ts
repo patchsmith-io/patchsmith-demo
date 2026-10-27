@@ -133,7 +133,7 @@ async function main() {
       interrupted[1].parts.some((part) => "toolCallId" in part && part.toolCallId === "list"),
       true,
     );
-    await validateUIMessages({ messages: interrupted, tools: createCrmTools(tenant.id) });
+    await validateUIMessages({ messages: interrupted, tools: createCrmTools(tenant.id, users[0]) });
 
     const oversizedId = randomUUID();
     await assert.rejects(

@@ -2,6 +2,7 @@ import { aiSdkTool } from "@orpc/ai-sdk";
 import { ORPCError } from "@orpc/server";
 import { and, asc, desc, eq, ilike, or } from "drizzle-orm";
 import { db } from "../lib/drizzle";
+import { notifyContactCreated } from "../lib/patchsmith-server";
 import { contacts, deals, tasks, activities } from "../lib/schema";
 import { protectedProcedure } from "./base";
 import { schemas } from "./schemas";
@@ -137,6 +138,8 @@ export const createContact = protectedProcedure
   .output(schemas.contacts.create.output)
   .handler(async ({ input, context }) => {
     const tenantId = context.tenant.id;
+    const subjectId = context.subjectId ?? (await context.resolveUserId?.());
+    if (!subjectId) throw new ORPCError("UNAUTHORIZED");
     const id = await db.transaction(async (tx) => {
       await lockTenant(tx, tenantId);
       await checkLimit(tx, contacts, tenantId);
@@ -152,7 +155,10 @@ export const createContact = protectedProcedure
       );
       return id;
     });
-    return { success: true as const, contact: { ...input, id }, href: `/contacts/${id}` };
+    const contact = { ...input, id };
+    // Notify only after commit. App failures must not make a saved contact look unsaved.
+    await notifyContactCreated(tenantId, subjectId, { contact });
+    return { success: true as const, contact, href: `/contacts/${id}` };
   });
 
 export const updateContact = protectedProcedure
