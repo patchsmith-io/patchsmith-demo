@@ -1,0 +1,51 @@
+package.json
+  s_8a316f14572b4b::t_8eadbbd7e3c418 14
+website/scripts/test-agent.ts
+  s_8a316f14572b4b::t_05199895dc8cc7 44-45,318
+  s_8a316f14572b4b::t_eee8f3d625ccc4 250-255
+website/lib/agents/crm-agent.ts
+  s_8a316f14572b4b::t_05199895dc8cc7 15,25
+website/routers/context.ts
+  s_8a316f14572b4b::t_a2e6c361f74efc 64-65
+  s_8a316f14572b4b::t_05199895dc8cc7 40,67-68
+website/lib/patchsmith-server.ts
+  s_8a316f14572b4b::t_05199895dc8cc7 2,18,87-107
+website/lib/patchsmith.ts
+  s_8a316f14572b4b::t_05199895dc8cc7 1,192-194
+website/lib/agents/crm-tools.ts
+  s_8a316f14572b4b::t_05199895dc8cc7 28,30
+website/routers/contacts.ts
+  s_8a316f14572b4b::t_05199895dc8cc7 5,141-142,158-161
+website/README.md
+  s_8a316f14572b4b::t_8eadbbd7e3c418 161-164
+website/scripts/test-rpc.ts
+  s_8a316f14572b4b::t_a2e6c361f74efc 3,21,29,113,330
+website/scripts/test-db.ts
+  s_8a316f14572b4b::t_a2e6c361f74efc 3,14,18,91-93,265
+website/scripts/test-agent-chats.ts
+  s_8a316f14572b4b::t_86500aee217c46 136
+website/scripts/contact-created.test.ts
+  s_8a316f14572b4b::t_88979c2a9b1457 81-92,196-202
+  s_8a316f14572b4b::t_8eadbbd7e3c418 1-16,21-68,73-80,100,109,126-137,152,169,176-177,182-191,203-211
+  s_8a316f14572b4b::t_eee8f3d625ccc4 17-20,69-72,93-99,101-108,110-125,138-151,153-168,170-175,178-181,192-195
+website/package.json
+  s_8a316f14572b4b::t_8eadbbd7e3c418 13
+website/routers/agent.ts
+  s_8a316f14572b4b::t_05199895dc8cc7 72,74,81
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "fb444a844b0f2e05808275da80d97ec5449e48ff",
+  "prompts": {},
+  "sessions": {
+    "s_8a316f14572b4b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a17cb4-3bac-75e3-9249-5dc426166517",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
