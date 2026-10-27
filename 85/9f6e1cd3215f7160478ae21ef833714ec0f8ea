@@ -1,0 +1,21 @@
+website/lib/patchsmith.ts
+  s_56c0a328e22362::t_2cf14a4898a007 454-463
+website/README.md
+  s_56c0a328e22362::t_2cf14a4898a007 145-146
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "859f6e1cd3215f7160478ae21ef833714ec0f8ea",
+  "prompts": {},
+  "sessions": {
+    "s_56c0a328e22362": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a17cdc-c544-7f92-a3f9-3ab497db841a",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
