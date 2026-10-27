@@ -1,0 +1,27 @@
+apps/messages/patchsmith.gen.ts
+  s_9faa06ef5304de::t_a53c78e8fb3985 1210
+website/lib/patchsmith.ts
+  s_9faa06ef5304de::t_33f1e881280e93 306-308
+apps/stripe/patchsmith.gen.ts
+  s_9faa06ef5304de::t_a53c78e8fb3985 1210
+apps/doom/patchsmith.gen.ts
+  s_9faa06ef5304de::t_a53c78e8fb3985 1214
+apps/messages/.agents/skills/patchsmith-capabilities/references/components/Input.md
+  s_9faa06ef5304de::t_a53c78e8fb3985 14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d7871c9a2f9183f111349f67c7e50bb376f4cb75",
+  "prompts": {},
+  "sessions": {
+    "s_9faa06ef5304de": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a17cb4-e178-7eb2-aaf9-cf9ca02366bf",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
