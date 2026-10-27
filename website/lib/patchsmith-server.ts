@@ -9,6 +9,7 @@ import * as activities from "../routers/activities";
 import { verifiedWorkspaceContext } from "../routers/context";
 import { contract } from "./patchsmith";
 import { patchsmithOrigin, patchsmithRequestOrigin } from "./patchsmith-origin";
+import type { WorkspaceHookEvent } from "./workspace-hooks";
 
 // Patchsmith verifies the capability before calling a tool. Workspace identity
 // comes from its signed scope, never from tool input.
@@ -94,4 +95,46 @@ export function patchsmithForRequest(request: Request) {
     hosts.set(origin, host);
   }
   return host;
+}
+
+// Only domain mutations with an authenticated/verified workspace call this.
+// Each hook is delivered to installations advertising that hook in this scope.
+export async function dispatchWorkspaceHook(
+  workspaceId: string,
+  event: WorkspaceHookEvent,
+  request?: Request,
+) {
+  const host = request ? patchsmithForRequest(request) : patchsmith;
+  const context = {
+    scopes: { workspace: { workspaceId } },
+    subjectId: "service:crm-events",
+    signal: AbortSignal.timeout(15000),
+  };
+  async function deliver<Input>(
+    caller: {
+      list: (options: typeof context) => Promise<{ id: string }[]>;
+      invoke: (options: typeof context & { appId: string; input: Input }) => Promise<void>;
+    },
+    input: Input,
+  ) {
+    const apps = await caller.list(context);
+    await Promise.all(
+      apps.map(async (app) => {
+        try {
+          await caller.invoke({ ...context, appId: app.id, input });
+        } catch {
+          // Don't log app errors: they may contain third-party credentials.
+          console.error("Patchsmith app hook failed:", event.name, app.id);
+        }
+      }),
+    );
+  }
+  switch (event.name) {
+    case "contacts.created":
+      return deliver(host.hooks[event.name], event.input);
+    case "deals.created":
+      return deliver(host.hooks[event.name], event.input);
+    case "tasks.completed":
+      return deliver(host.hooks[event.name], event.input);
+  }
 }

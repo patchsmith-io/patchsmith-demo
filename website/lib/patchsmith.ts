@@ -1,4 +1,4 @@
-import { defineContract, experimental_canvas, tool } from "patchsmith";
+import { defineContract, experimental_canvas, hook, tool } from "patchsmith";
 import { defaultBreakpoints, primitives, type PatchsmithTheme } from "patchsmith/zod";
 import { z } from "zod";
 import { schemas, stage, status } from "../routers/schemas";
@@ -189,6 +189,15 @@ const viewPaths = Object.keys(views) as (keyof typeof views)[];
 
 export const contract = defineContract({
   scopes: { workspace: z.object({ workspaceId: z.string().min(1) }) },
+  hooks: {
+    "contacts.created": hook().input(
+      z.object({ contact: schemas.contacts.create.output.shape.contact }),
+    ),
+    "deals.created": hook().input(z.object({ deal: schemas.deals.create.output.shape.deal })),
+    "tasks.completed": hook().input(
+      z.object({ task: schemas.tasks.setCompleted.output.shape.task }),
+    ),
+  },
   components: {
     ...primitives(patchsmithTheme),
     Canvas: experimental_canvas({
