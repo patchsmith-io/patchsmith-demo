@@ -451,8 +451,16 @@ export const contract = defineContract({
   views,
   slots: {
     navbar: { views: viewPaths },
-    panel: { views: viewPaths },
-    page: { views: ["/"], multiple: true },
+    panel: {
+      views: viewPaths,
+      description: "The sidepanel. Use this slot by default for all app UI.",
+    },
+    page: {
+      views: ["/"],
+      multiple: true,
+      description:
+        "Full-screen app content. Use this slot only when the content needs a full screen or the user explicitly requests a page. Otherwise, use the panel slot for all UI.",
+    },
   },
 });
 
