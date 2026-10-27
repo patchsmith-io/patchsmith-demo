@@ -1,5 +1,5 @@
 import { createServer } from "patchsmith/server";
-import type { ToolContext } from "patchsmith";
+import type { InferHookInput, ToolContext } from "patchsmith";
 import { call } from "@orpc/server";
 import * as workspace from "../routers/workspace";
 import * as contacts from "../routers/contacts";
@@ -15,7 +15,7 @@ import { patchsmithOrigin, patchsmithRequestOrigin } from "./patchsmith-origin";
 function rpcContext(context: ToolContext) {
   if (context.scope.name !== "workspace") throw new Error("A workspace scope is required.");
   const { workspaceId } = contract.scopes.workspace.parse(context.scope.value);
-  return verifiedWorkspaceContext(workspaceId);
+  return verifiedWorkspaceContext(workspaceId, context.identity.subjectId);
 }
 
 function createHost(origin: string) {
@@ -84,6 +84,27 @@ function createHost(origin: string) {
 }
 
 export const patchsmith = createHost(patchsmithOrigin());
+
+export async function notifyContactCreated(
+  workspaceId: string,
+  subjectId: string,
+  input: InferHookInput<typeof contract.hooks.contactCreated>,
+) {
+  const context = { subjectId, scopes: { workspace: { workspaceId } } };
+  try {
+    const apps = await patchsmith.hooks.contactCreated.list(context);
+    for (const app of apps) {
+      try {
+        await patchsmith.hooks.contactCreated.invoke({ ...context, appId: app.id, input });
+      } catch (error) {
+        console.error("Contact-created hook failed:", app.id, error);
+      }
+    }
+  } catch (error) {
+    console.error("Contact-created hook discovery failed:", error);
+  }
+}
+
 const hosts = new Map([[patchsmithOrigin(), patchsmith]]);
 
 export function patchsmithForRequest(request: Request) {

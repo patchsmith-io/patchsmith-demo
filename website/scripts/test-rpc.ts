@@ -1,5 +1,6 @@
 import "./test-env";
 import assert from "node:assert/strict";
+import { mock } from "node:test";
 import { AsyncLocalStorage } from "node:async_hooks";
 import { createORPCClient, ORPCError } from "@orpc/client";
 import { RPCLink } from "@orpc/client/fetch";
@@ -17,6 +18,7 @@ import { router } from "../routers";
 import { handleRpcRequest } from "../routers/handler";
 import { tenantFromHeaders, verifiedWorkspaceContext } from "../routers/context";
 import { provisionForUser } from "./test-provision";
+import { patchsmith } from "../lib/patchsmith-server";
 
 const origin = "http://localhost:3000";
 const hasCode = (code: string) => (error: unknown) =>
@@ -24,6 +26,7 @@ const hasCode = (code: string) => (error: unknown) =>
 
 async function main() {
   const users: string[] = [];
+  const hookDiscovery = mock.method(patchsmith.hooks.contactCreated, "list", async () => []);
   try {
     let requests = 0;
     function browserClient(cookie?: string): RouterClient<typeof router> {
@@ -107,7 +110,7 @@ async function main() {
     };
     try {
       const direct = createRouterClient(router, {
-        context: verifiedWorkspaceContext(first.tenant.id),
+        context: verifiedWorkspaceContext(first.tenant.id, users[0]),
       });
       await assert.rejects(() => direct.workspace.provision(), hasCode("UNAUTHORIZED"));
       await assert.rejects(() => direct.workspace.installApps(), hasCode("UNAUTHORIZED"));
@@ -324,6 +327,7 @@ async function main() {
       "PASS: authenticated oRPC HTTP + direct clients, validation, React Query hydration + mutation invalidation, pending query streaming, errors, CSRF/method/body limits, and concurrent request isolation without server HTTP.",
     );
   } finally {
+    hookDiscovery.mock.restore();
     for (const id of users) await db.delete(user).where(eq(user.id, id));
     await pool.end();
   }

@@ -69,14 +69,16 @@ export const agentChat = protectedProcedure
       });
     }
     try {
+      const subjectId = await resolveUserId();
       const patchsmithTools = createTools(patchsmith, {
-        subjectId: await resolveUserId(),
+        subjectId,
         scopes: { workspace: { workspaceId: tenant.id } },
       });
       const stream = await createAgentUIStream({
         agent: createCrmAgent(
           tenant,
           {
+            subjectId,
             page: input.page,
             date: input.date ?? new Date().toISOString().slice(0, 10),
             timeZone: input.timeZone,

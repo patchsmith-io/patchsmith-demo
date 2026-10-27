@@ -37,6 +37,7 @@ export async function tenantFromVerifiedId(id: string): Promise<RpcTenant> {
 }
 
 export type RpcContext = {
+  subjectId?: string;
   request?: Request;
   afterResponse?: (work: () => Promise<void>) => void;
   resolveTenant: () => Promise<RpcTenant>;
@@ -60,8 +61,9 @@ export function requestContext(headers: Headers): RpcContext {
   };
 }
 
-// Only use an ID resolved from a server session or a verified Patchsmith scope.
+// Only use IDs resolved from a server session or verified Patchsmith identity/scope.
+// Contact creation requires the creator's subjectId as well as the workspace.
 // This capability does not grant access to session-only setup procedures.
-export function verifiedWorkspaceContext(tenantId: string): RpcContext {
-  return { resolveTenant: () => tenantFromVerifiedId(tenantId) };
+export function verifiedWorkspaceContext(tenantId: string, subjectId?: string): RpcContext {
+  return { subjectId, resolveTenant: () => tenantFromVerifiedId(tenantId) };
 }

@@ -1,5 +1,6 @@
 import "./test-env";
 import assert from "node:assert/strict";
+import { mock } from "node:test";
 import { and, asc, count, desc, eq } from "drizzle-orm";
 import { auth } from "../lib/auth";
 import { db, pool } from "../lib/drizzle";
@@ -10,9 +11,11 @@ import { createRouterClient, ORPCError } from "@orpc/server";
 import { router } from "../routers";
 import { verifiedWorkspaceContext } from "../routers/context";
 import { checkContact, RECORD_LIMIT } from "../routers/shared";
+import { patchsmith } from "../lib/patchsmith-server";
 
 async function main() {
   const users: string[] = [];
+  const hookDiscovery = mock.method(patchsmith.hooks.contactCreated, "list", async () => []);
   try {
     const response = await auth.api.signInAnonymous({ asResponse: true });
     assert.equal(response.status, 200);
@@ -85,7 +88,9 @@ async function main() {
       "Concurrent provisioning must create one tenant",
     );
     const tenant = provisioned[0];
-    const client = createRouterClient(router, { context: verifiedWorkspaceContext(tenant.id) });
+    const client = createRouterClient(router, {
+      context: verifiedWorkspaceContext(tenant.id, payload.user.id),
+    });
     assert.equal(tenant.setupVersion, CURRENT_SETUP_VERSION);
     for (const [table, expected] of [
       [contacts, 30],
@@ -257,6 +262,7 @@ async function main() {
       "PASS: real PostgreSQL anonymous auth + persistent session, concurrent/idempotent provisioning, saved pipeline sorting + positional stage moves, tenant isolation + rejected cross-tenant writes, validated CRUD, and concurrent 50-record limit enforcement.",
     );
   } finally {
+    hookDiscovery.mock.restore();
     for (const id of users) await db.delete(user).where(eq(user.id, id));
     const remaining = await db
       .select()
