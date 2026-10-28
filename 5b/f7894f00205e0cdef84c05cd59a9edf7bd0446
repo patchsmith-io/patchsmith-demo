@@ -1,0 +1,39 @@
+website/routers/agent.ts
+  s_31b2db1ad1b6c2::t_896f9a0c1d7bbb 12,92
+website/components/agent/agent-chat.tsx
+  s_31b2db1ad1b6c2::t_896f9a0c1d7bbb 93-94,96-97,99,121,134,138,432-436,440-446
+  s_31b2db1ad1b6c2::t_2cf61717ea4772 95,98,431,437,439,447
+package.json
+  s_31b2db1ad1b6c2::t_3bc323ad12966d 14
+website/scripts/tool-timing.test.ts
+  s_31b2db1ad1b6c2::t_16970ba3767d09 16,50-51,71-73
+  s_31b2db1ad1b6c2::t_829bfe69fc6cc8 1-15,17-49,52-70,74,76-78,80-81
+  s_31b2db1ad1b6c2::t_4acac388bd8974 75,79
+website/lib/agents/tool-timing.ts
+  s_31b2db1ad1b6c2::t_896f9a0c1d7bbb 1-15
+website/components/ai-elements/tool.tsx
+  s_31b2db1ad1b6c2::t_896f9a0c1d7bbb 95-97,99,106-109,112-114
+  s_31b2db1ad1b6c2::t_19570b09a98b79 110-111
+website/lib/agents/crm-agent.ts
+  s_31b2db1ad1b6c2::t_896f9a0c1d7bbb 12,42
+website/scripts/test-agent-rpc.ts
+  s_31b2db1ad1b6c2::t_829bfe69fc6cc8 387-388
+website/package.json
+  s_31b2db1ad1b6c2::t_829bfe69fc6cc8 28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5bf7894f00205e0cdef84c05cd59a9edf7bd0446",
+  "prompts": {},
+  "sessions": {
+    "s_31b2db1ad1b6c2": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a18027-b5dd-7e61-ac16-299c14abe516",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Alfie Jones <alfie.jones@hotmail.co.uk>"
+    }
+  }
+}
