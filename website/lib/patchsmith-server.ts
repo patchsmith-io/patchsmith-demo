@@ -22,6 +22,7 @@ function createHost(origin: string) {
   return createServer({
     contract,
     agent: {
+      model: "openai/gpt-6.1-sol-fast",
       instructions: [
         "Always add a panel slot, even if the app has no functionality for it.",
         "Whenever a page, panel, or section has nothing to display after loading, use our Empty component. This includes missing data, no matching results, and panel slots with no functionality. Give it a clear title and a helpful description, and include a relevant action as a child when one is available. For input-level feedback, use the control's built-in loading and empty states instead of inserting page-level Alert or Empty blocks between form fields.",
