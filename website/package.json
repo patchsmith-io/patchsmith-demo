@@ -25,6 +25,7 @@
     "test:db": "tsx scripts/test-db.ts",
     "test:setup-protection": "tsx scripts/test-setup-protection.ts",
     "test:agent": "tsx scripts/test-agent.ts",
+    "test:tool-timing": "tsx --test scripts/tool-timing.test.ts",
     "test:agent-rpc": "tsx scripts/test-agent-rpc.ts",
     "test:agent-chats": "tsx scripts/test-agent-chats.ts",
     "test:rpc": "tsx scripts/test-rpc.ts"

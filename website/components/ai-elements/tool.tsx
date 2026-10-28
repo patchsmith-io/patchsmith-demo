@@ -92,16 +92,26 @@ export const ToolHeader = ({
   );
 };
 
-export type ToolContentProps = ComponentProps<typeof CollapsibleContent>;
+export type ToolContentProps = ComponentProps<typeof CollapsibleContent> & {
+  durationMs?: number;
+};
 
-export const ToolContent = ({ className, ...props }: ToolContentProps) => (
+export const ToolContent = ({ className, children, durationMs, ...props }: ToolContentProps) => (
   <CollapsibleContent
     className={cn(
       "data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-top-2 data-[state=open]:slide-in-from-top-2 space-y-4 p-4 text-popover-foreground outline-none data-[state=closed]:animate-out data-[state=open]:animate-in",
       className,
     )}
     {...props}
-  />
+  >
+    {children}
+    {durationMs !== undefined && Number.isFinite(durationMs) && durationMs >= 0 ? (
+      <p className="text-muted-foreground text-xs tabular-nums">
+        Duration:{" "}
+        {durationMs < 1000 ? `${Math.round(durationMs)} ms` : `${(durationMs / 1000).toFixed(1)} s`}
+      </p>
+    ) : null}
+  </CollapsibleContent>
 );
 
 export type ToolInputProps = ComponentProps<"div"> & {

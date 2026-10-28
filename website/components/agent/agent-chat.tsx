@@ -90,7 +90,13 @@ const patchsmithToolTitles: Record<string, string> = {
   patchsmith_edit_app: "Edit an app",
 };
 
-function AppToolResult({ part }: { part: DynamicToolUIPart | AppToolPart }) {
+function AppToolResult({
+  part,
+  durationMs,
+}: {
+  part: DynamicToolUIPart | AppToolPart;
+  durationMs?: number;
+}) {
   const toolName = part.type === "dynamic-tool" ? part.toolName : part.type.slice(5);
   const preliminary = part.state === "output-available" && part.preliminary === true;
   const failed =
@@ -112,7 +118,7 @@ function AppToolResult({ part }: { part: DynamicToolUIPart | AppToolPart }) {
         state={failed ? "output-error" : preliminary ? "input-available" : part.state}
         title={patchsmithToolTitles[toolName] ?? part.title ?? toolName}
       />
-      <ToolContent>
+      <ToolContent durationMs={durationMs}>
         <p className="text-sm text-muted-foreground">
           {part.state === "output-error" || failed
             ? "The app request could not finish. Check your apps before repeating a change."
@@ -125,11 +131,11 @@ function AppToolResult({ part }: { part: DynamicToolUIPart | AppToolPart }) {
   );
 }
 
-function ToolResult({ part }: { part: ToolPart }) {
+function ToolResult({ part, durationMs }: { part: ToolPart; durationMs?: number }) {
   return (
     <Tool className="mb-0" defaultOpen={part.state === "output-error"}>
       <ToolHeader type={part.type} state={part.state} title={toolTitles[part.type]} />
-      <ToolContent>
+      <ToolContent durationMs={durationMs}>
         {part.state === "output-error" ? (
           <p className="text-sm text-destructive">{part.errorText}</p>
         ) : null}
@@ -422,9 +428,23 @@ export function AgentChat({
                         part.type === "tool-createApp" ||
                         part.type === "tool-editApp"
                       )
-                        return <AppToolResult key={index} part={part} />;
+                        return (
+                          <AppToolResult
+                            key={index}
+                            part={part}
+                            durationMs={message.metadata?.toolDurations?.[part.toolCallId]}
+                          />
+                        );
                       if (part.type.startsWith("tool-"))
-                        return <ToolResult key={index} part={part as ToolPart} />;
+                        return (
+                          <ToolResult
+                            key={index}
+                            part={part as ToolPart}
+                            durationMs={
+                              message.metadata?.toolDurations?.[(part as ToolPart).toolCallId]
+                            }
+                          />
+                        );
                       return null;
                     })}
                   </MessageContent>
