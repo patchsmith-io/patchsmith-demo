@@ -384,6 +384,8 @@ async function main() {
     await runCleanup();
     assert.equal(appCalls, 1);
     const savedApps = await loadAgentChat(tenant.id, apps.chatId);
+    const appDuration = savedApps?.messages.at(-1)?.metadata?.toolDurations?.apps;
+    assert.ok(appDuration !== undefined && Number.isFinite(appDuration) && appDuration >= 0);
     assert.ok(
       savedApps?.messages
         .at(-1)

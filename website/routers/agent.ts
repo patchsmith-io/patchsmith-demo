@@ -9,6 +9,7 @@ import { createCrmAgent } from "../lib/agents/crm-agent";
 import { AGENT_TIMEOUT_MS } from "../lib/agents/agent-limits";
 import { agentRequest } from "../lib/agents/agent-request";
 import { AGENT_BOT_CHECK_LEVEL } from "../lib/agents/agent-protection";
+import { toolTimingMetadata } from "../lib/agents/tool-timing";
 import { beginAgentChat, finishAgentMessages, saveAgentChat } from "./chats";
 
 export const agentChat = protectedProcedure
@@ -88,6 +89,7 @@ export const agentChat = protectedProcedure
         ),
         uiMessages: chatTurn.messages,
         generateMessageId: randomUUID,
+        messageMetadata: toolTimingMetadata,
         onUIMessageStepEnd: ({ messages }) => saveAgentChat(chatTurn, messages),
         onEnd: ({ messages, outcome, isAborted, isCancelled }) =>
           saveAgentChat(
